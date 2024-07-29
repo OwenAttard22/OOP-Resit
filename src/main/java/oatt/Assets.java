@@ -74,8 +74,75 @@ class Stock extends Assets{
 
     @Override
     public String displayAsset() {
-        return String.format("Stock: %s\nValue: %.2f\nTicker: %s\nQuantity: %.2f\nDividend Yield: %.2f",
+        return String.format("Stock: %s, Value: %.2f, Ticker: %s, Quantity: %.2f, Dividend Yield: %.2f",
                 get_name(), get_value(), get_ticker(), get_quantity(), get_yield());
     }
+}
 
+class Bond extends Assets{
+    private float _interestRate;
+    private int _daysToMaturity;
+
+    public Bond(String name, float value, float interestRate, int daysToMaturity){
+        set_name(name);
+        set_value(value);
+        set_interestRate(interestRate);
+        set_daysToMaturity(daysToMaturity);
+    }
+
+    void set_interestRate(float interestRate){
+        _interestRate = interestRate;
+    }
+
+    void set_daysToMaturity(int daysToMaturity){
+        _daysToMaturity = daysToMaturity;
+    }
+
+    float get_interestRate(){
+        return _interestRate;
+    }
+
+    int get_daysToMaturity(){
+        return _daysToMaturity;
+    }
+
+    @Override
+    public double calculateAnnualReturn(){
+        return get_interestRate()*get_value();
+    }
+
+    @Override
+    public String displayAsset() {
+        return String.format("Bond: %s\nValue: %.2f\nInterest Rate: %.2f\nDays to Maturity: %d",
+                get_name(), get_value(), get_interestRate(), get_daysToMaturity());
+    }
+}
+
+class MutualFund extends Assets{
+    private float _expenseRatio;
+
+    public MutualFund(String name, float value, float expenseRatio){
+        set_name(name);
+        set_value(value);
+        set_expenseRatio(expenseRatio);
+    }
+
+    void set_expenseRatio(float expenseRatio){
+        _expenseRatio = expenseRatio;
+    }
+
+    float get_expenseRatio(){
+        return _expenseRatio;
+    }
+
+    @Override
+    public double calculateAnnualReturn(){
+        return get_value()*get_expenseRatio();
+    }
+
+    @Override
+    public String displayAsset() {
+        return String.format("Mutual Fund: %s\nValue: %.2f\nExpense Ratio: %.2f",
+                get_name(), get_value(), get_expenseRatio());
+    }
 }
