@@ -10,10 +10,6 @@ public class CLI {
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
 
-    public static void main(String[] args) {
-        InitMenu();
-    }
-
     public static void InitMenu() {
         do {
             System.out.println("\nInitialisation:");
