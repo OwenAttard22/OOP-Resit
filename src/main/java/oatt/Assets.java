@@ -3,6 +3,7 @@ package oatt;
 abstract class Assets {
     private String _name;
     private float _value;
+    private Intermediaries _intermediary;
 
     void set_name(String name){
         _name = name;
@@ -20,27 +21,30 @@ abstract class Assets {
         return _value;
     }
 
-    public double calculateAnnualReturn(){
-        System.out.println("Annual Return: 0");
-        return 0;
+    void set_intermediary(Intermediaries intermediary) {
+        _intermediary = intermediary;
     }
 
-    public String displayAsset(){
-        return "";
+    Intermediaries get_intermediary() {
+        return _intermediary;
     }
-    
+
+    public abstract double calculateAnnualReturn();
+
+    public abstract String displayAsset();
 }
 
-class Stock extends Assets{
+class Stock extends Assets {
     private String _ticker;
     private float _quantity, _yield;
 
-    public Stock(String name, float value, String ticker, float quantity, float yield){
+    public Stock(String name, float value, String ticker, float quantity, float yield, Broker intermediary){
         set_name(name);
         set_value(value);
         set_ticker(ticker);
         set_quantity(quantity);
         set_yield(yield);
+        set_intermediary(intermediary);
     }
 
     void set_ticker(String ticker){
@@ -79,15 +83,16 @@ class Stock extends Assets{
     }
 }
 
-class Bond extends Assets{
+class Bond extends Assets {
     private float _interestRate;
     private int _daysToMaturity;
 
-    public Bond(String name, float value, float interestRate, int daysToMaturity){
+    public Bond(String name, float value, float interestRate, int daysToMaturity, Bank intermediary){
         set_name(name);
         set_value(value);
         set_interestRate(interestRate);
         set_daysToMaturity(daysToMaturity);
+        set_intermediary(intermediary);
     }
 
     void set_interestRate(float interestRate){
@@ -118,13 +123,14 @@ class Bond extends Assets{
     }
 }
 
-class MutualFund extends Assets{
+class MutualFund extends Assets {
     private float _expenseRatio;
 
-    public MutualFund(String name, float value, float expenseRatio){
+    public MutualFund(String name, float value, float expenseRatio, MutualFundManager intermediary){
         set_name(name);
         set_value(value);
         set_expenseRatio(expenseRatio);
+        set_intermediary(intermediary);
     }
 
     void set_expenseRatio(float expenseRatio){

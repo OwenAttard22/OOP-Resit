@@ -134,20 +134,19 @@ public class CLI {
 
                 switch (selection) {
                     case 1: // Create
-                        System.out.println("Create Intermediary");
+                        createIntermediary();
                         break;
                     case 2: // Read
-                        System.out.println("Read Intermediaries");
+                        readIntermediaries();
                         break;
                     case 3: // Update
-                        System.out.println("Update Intermediaries");
+                        updateIntermediary();
                         break;
                     case 4: // Delete
-                        System.out.println("Delete Intermediaries");
+                        deleteIntermediary();
                         break;
                     case 5: // Main Menu
-                        MainMenu();
-                        break;
+                        return; // Exit the IntermediariesMenu loop
                     default:
                         System.err.println("Invalid Selection");
                         break;
@@ -174,15 +173,12 @@ public class CLI {
                 switch (selection) {
                     case 1: // Stock
                         createStock();
-                        AssetsMenu();
                         return;
                     case 2: // Bond
                         createBond();
-                        AssetsMenu();
                         return;
                     case 3: // Mutual Fund
                         createMutualFund();
-                        AssetsMenu();
                         return;
                     case 4: // Back to Assets Menu
                         return; // Exit the createAsset loop
@@ -209,8 +205,16 @@ public class CLI {
         float quantity = input.nextFloat();
         System.out.println("Enter yield:");
         float yield = input.nextFloat();
+        System.out.println("Enter intermediary name:");
+        String intermediaryName = input.next();
 
-        Stock newStock = new Stock(name, value, ticker, quantity, yield);
+        Broker broker = findBrokerByName(intermediaryName);
+        if (broker == null) {
+            System.out.println("Broker not found. Please create the broker first.");
+            return;
+        }
+
+        Stock newStock = new Stock(name, value, ticker, quantity, yield, broker);
         assetsList.add(newStock);
         System.out.println("Stock created successfully.");
     }
@@ -224,8 +228,16 @@ public class CLI {
         float interestRate = input.nextFloat();
         System.out.println("Enter days to maturity:");
         int daysToMaturity = input.nextInt();
+        System.out.println("Enter intermediary name:");
+        String intermediaryName = input.next();
 
-        Bond newBond = new Bond(name, value, interestRate, daysToMaturity);
+        Bank bank = findBankByName(intermediaryName);
+        if (bank == null) {
+            System.out.println("Bank not found. Please create the bank first.");
+            return;
+        }
+
+        Bond newBond = new Bond(name, value, interestRate, daysToMaturity, bank);
         assetsList.add(newBond);
         System.out.println("Bond created successfully.");
     }
@@ -237,107 +249,148 @@ public class CLI {
         float value = input.nextFloat();
         System.out.println("Enter expense ratio:");
         float expenseRatio = input.nextFloat();
+        System.out.println("Enter intermediary name:");
+        String intermediaryName = input.next();
 
-        MutualFund newMutualFund = new MutualFund(name, value, expenseRatio);
+        MutualFundManager manager = findMutualFundManagerByName(intermediaryName);
+        if (manager == null) {
+            System.out.println("Mutual Fund Manager not found. Please create the mutual fund manager first.");
+            return;
+        }
+
+        MutualFund newMutualFund = new MutualFund(name, value, expenseRatio, manager);
         assetsList.add(newMutualFund);
         System.out.println("Mutual fund created successfully.");
     }
 
-    public static void readAssets() {
-        if (assetsList.isEmpty()) {
-            System.out.println("No assets available.");
-        } else {
-            for (int i = 0; i < assetsList.size(); i++) {
-                System.out.println((i + 1) + ": " + assetsList.get(i).displayAsset());
+    public static void createIntermediary() {
+        do {
+            System.out.println("\nChoose which type of intermediary to create:");
+            System.out.println("1. Broker");
+            System.out.println("2. Bank");
+            System.out.println("3. Mutual Fund Manager");
+            System.out.println("4. Back to Intermediaries Menu");
+
+            try {
+                selection = input.nextInt();
+
+                switch (selection) {
+                    case 1: // Broker
+                        createBroker();
+                        return;
+                    case 2: // Bank
+                        createBank();
+                        return;
+                    case 3: // Mutual Fund Manager
+                        createMutualFundManager();
+                        return;
+                    case 4: // Back to Intermediaries Menu
+                        return; // Exit the createIntermediary loop
+                    default:
+                        System.err.println("Invalid Selection");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid input. Please enter an integer.");
+                input.next();
             }
+
+        } while (true);
+    }
+
+    public static void createBroker() {
+        System.out.println("\nEnter broker name:");
+        String name = input.next();
+        System.out.println("Enter commission:");
+        float commission = input.nextFloat();
+
+        Broker newBroker = new Broker(name, commission);
+        intermediariesList.add(newBroker);
+        System.out.println("Broker created successfully.");
+    }
+
+    public static void createBank() {
+        System.out.println("\nEnter bank name:");
+        String name = input.next();
+        System.out.println("Enter interest rate:");
+        float interestRate = input.nextFloat();
+
+        Bank newBank = new Bank(name, interestRate);
+        intermediariesList.add(newBank);
+        System.out.println("Bank created successfully.");
+    }
+
+    public static void createMutualFundManager() {
+        System.out.println("\nEnter mutual fund manager name:");
+        String name = input.next();
+        System.out.println("Enter management fee:");
+        float managementFee = input.nextFloat();
+        System.out.println("Enter employee number:");
+        String employeeNumber = input.next();
+
+        MutualFundManager newManager = new MutualFundManager(name, employeeNumber, managementFee);
+        intermediariesList.add(newManager);
+        System.out.println("Mutual fund manager created successfully.");
+    }
+
+    public static void readAssets() {
+        System.out.println("\nList of Assets:");
+        for (Assets asset : assetsList) {
+            System.out.println(asset.toString());
         }
     }
 
     public static void updateAsset() {
-        System.out.println("\nEnter the asset number to update:");
-        int index = input.nextInt() - 1;
-
-        if (index >= 0 && index < assetsList.size()) {
-            Assets asset = assetsList.get(index);
-
-            if (asset instanceof Stock) {
-                updateStock((Stock) asset);
-            } else if (asset instanceof Bond) {
-                updateBond((Bond) asset);
-            } else if (asset instanceof MutualFund) {
-                updateMutualFund((MutualFund) asset);
-            } else {
-                System.out.println("Unknown asset type.");
-            }
-        } else {
-            System.out.println("Invalid asset number.");
-        }
-    }
-
-    public static void updateStock(Stock stock) {
-        System.out.println("\nEnter new stock name (current: " + stock.get_name() + "):");
-        String name = input.next();
-        System.out.println("Enter new stock value (current: " + stock.get_value() + "):");
-        float value = input.nextFloat();
-        System.out.println("Enter new ticker (current: " + stock.get_ticker() + "):");
-        String ticker = input.next();
-        System.out.println("Enter new quantity (current: " + stock.get_quantity() + "):");
-        float quantity = input.nextFloat();
-        System.out.println("Enter new yield (current: " + stock.get_yield() + "):");
-        float yield = input.nextFloat();
-
-        stock.set_name(name);
-        stock.set_value(value);
-        stock.set_ticker(ticker);
-        stock.set_quantity(quantity);
-        stock.set_yield(yield);
-
-        System.out.println("Stock updated successfully.");
-    }
-
-    public static void updateBond(Bond bond) {
-        System.out.println("\nEnter new bond name (current: " + bond.get_name() + "):");
-        String name = input.next();
-        System.out.println("Enter new bond value (current: " + bond.get_value() + "):");
-        float value = input.nextFloat();
-        System.out.println("Enter new interest rate (current: " + bond.get_interestRate() + "):");
-        float interestRate = input.nextFloat();
-        System.out.println("Enter new days to maturity (current: " + bond.get_daysToMaturity() + "):");
-        int daysToMaturity = input.nextInt();
-
-        bond.set_name(name);
-        bond.set_value(value);
-        bond.set_interestRate(interestRate);
-        bond.set_daysToMaturity(daysToMaturity);
-
-        System.out.println("Bond updated successfully.");
-    }
-
-    public static void updateMutualFund(MutualFund mutualFund) {
-        System.out.println("\nEnter new mutual fund name (current: " + mutualFund.get_name() + "):");
-        String name = input.next();
-        System.out.println("Enter new mutual fund value (current: " + mutualFund.get_value() + "):");
-        float value = input.nextFloat();
-        System.out.println("Enter new expense ratio (current: " + mutualFund.get_expenseRatio() + "):");
-        float expenseRatio = input.nextFloat();
-
-        mutualFund.set_name(name);
-        mutualFund.set_value(value);
-        mutualFund.set_expenseRatio(expenseRatio);
-
-        System.out.println("Mutual fund updated successfully.");
+        // Implement update functionality
     }
 
     public static void deleteAsset() {
-        readAssets();
-        System.out.println("Enter the asset number to delete:");
-        int index = input.nextInt() - 1;
+        // Implement delete functionality
+    }
 
-        if (index >= 0 && index < assetsList.size()) {
-            assetsList.remove(index);
-            System.out.println("Asset deleted successfully.");
-        } else {
-            System.out.println("Invalid asset number.");
+    public static void readIntermediaries() {
+        System.out.println("\nList of Intermediaries:");
+        for (Intermediaries intermediary : intermediariesList) {
+            System.out.println(intermediary.toString());
         }
+    }
+
+    public static void updateIntermediary() {
+        // Implement update functionality
+    }
+
+    public static void deleteIntermediary() {
+        // Implement delete functionality
+    }
+
+    public static Broker findBrokerByName(String name) {
+        for (Intermediaries intermediary : intermediariesList) {
+            if (intermediary instanceof Broker && intermediary.get_name().equalsIgnoreCase(name)) {
+                return (Broker) intermediary;
+            }
+        }
+        return null;
+    }
+
+    public static Bank findBankByName(String name) {
+        for (Intermediaries intermediary : intermediariesList) {
+            if (intermediary instanceof Bank && intermediary.get_name().equalsIgnoreCase(name)) {
+                return (Bank) intermediary;
+            }
+        }
+        return null;
+    }
+
+    public static MutualFundManager findMutualFundManagerByName(String name) {
+        for (Intermediaries intermediary : intermediariesList) {
+            if (intermediary instanceof MutualFundManager && intermediary.get_name().equalsIgnoreCase(name)) {
+                return (MutualFundManager) intermediary;
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        InitMenu();
     }
 }

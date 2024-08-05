@@ -11,12 +11,10 @@ abstract class Intermediaries {
         return _name;
     }
 
-    public String displayIntermediary(){
-        return "";
-    }
+    public abstract String displayIntermediary();
 }
 
-class Broker extends Intermediaries{
+class Broker extends Intermediaries {
     private float _commission;
 
     public Broker(String name, float commission){
@@ -32,12 +30,13 @@ class Broker extends Intermediaries{
         return _commission;
     }
 
+    @Override
     public String displayIntermediary(){
         return "Broker: " + get_name() + ", Commission: " + get_commission();
     }
 }
 
-class Bank extends Intermediaries{
+class Bank extends Intermediaries {
     private float _interestRate;
 
     public Bank(String name, float interestRate){
@@ -53,16 +52,17 @@ class Bank extends Intermediaries{
         return _interestRate;
     }
 
+    @Override
     public String displayIntermediary(){
         return "Bank: " + get_name() + ", Interest Rate: " + get_interestRate();
     }
 }
 
-class MututalFundManager extends Intermediaries{
+class MutualFundManager extends Intermediaries {
     private String _employeeNumber;
     private float _managementFee;
 
-    public MututalFundManager(String name, String employeeNumber, float managementFee){
+    public MutualFundManager(String name, String employeeNumber, float managementFee){
         set_name(name);
         set_employeeNumber(employeeNumber);
         set_managementFee(managementFee);
@@ -84,7 +84,8 @@ class MututalFundManager extends Intermediaries{
         return _managementFee;
     }
 
+    @Override
     public String displayIntermediary(){
-        return "Mututal Fund Manager: " + get_name() + ", Employee Number: " + get_employeeNumber() + ", Management Fee: " + get_managementFee();
+        return "Mutual Fund Manager: " + get_name() + ", Employee Number: " + get_employeeNumber() + ", Management Fee: " + get_managementFee();
     }
 }
