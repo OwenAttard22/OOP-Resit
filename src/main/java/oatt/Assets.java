@@ -118,7 +118,7 @@ class Bond extends Assets {
 
     @Override
     public String displayAsset() {
-        return String.format("Bond: %s\nValue: %.2f\nInterest Rate: %.2f\nDays to Maturity: %d",
+        return String.format("Bond: %s, Value: %.2f, Interest Rate: %.2f, Days to Maturity: %d",
                 get_name(), get_value(), get_interestRate(), get_daysToMaturity());
     }
 }
@@ -148,7 +148,7 @@ class MutualFund extends Assets {
 
     @Override
     public String displayAsset() {
-        return String.format("Mutual Fund: %s\nValue: %.2f\nExpense Ratio: %.2f",
+        return String.format("Mutual Fund: %s, Value: %.2f, Expense Ratio: %.2f",
                 get_name(), get_value(), get_expenseRatio());
     }
 }

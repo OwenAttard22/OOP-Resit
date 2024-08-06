@@ -1,8 +1,9 @@
 package oatt;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class CLI {
     private static Scanner input = new Scanner(System.in);
@@ -195,73 +196,148 @@ public class CLI {
     }
 
     public static void createStock() {
-        System.out.println("\nEnter stock name:");
-        String name = input.next();
-        System.out.println("Enter stock value:");
-        float value = input.nextFloat();
-        System.out.println("Enter ticker:");
-        String ticker = input.next();
-        System.out.println("Enter quantity:");
-        float quantity = input.nextFloat();
-        System.out.println("Enter yield:");
-        float yield = input.nextFloat();
-        System.out.println("Enter intermediary name:");
-        String intermediaryName = input.next();
-
-        Broker broker = findBrokerByName(intermediaryName);
-        if (broker == null) {
-            System.out.println("Broker not found. Please create the broker first.");
-            return;
-        }
-
-        Stock newStock = new Stock(name, value, ticker, quantity, yield, broker);
-        assetsList.add(newStock);
-        System.out.println("Stock created successfully.");
+    if (intermediariesList.isEmpty()) {
+        System.out.println("No brokers available. Please create a broker first.");
+        return;
     }
 
-    public static void createBond() {
-        System.out.println("\nEnter bond name:");
-        String name = input.next();
-        System.out.println("Enter bond value:");
-        float value = input.nextFloat();
-        System.out.println("Enter interest rate:");
-        float interestRate = input.nextFloat();
-        System.out.println("Enter days to maturity:");
-        int daysToMaturity = input.nextInt();
-        System.out.println("Enter intermediary name:");
-        String intermediaryName = input.next();
-
-        Bank bank = findBankByName(intermediaryName);
-        if (bank == null) {
-            System.out.println("Bank not found. Please create the bank first.");
-            return;
+    List<Broker> brokers = new ArrayList<>();
+    for (Intermediaries intermediary : intermediariesList) {
+        if (intermediary instanceof Broker) {
+            brokers.add((Broker) intermediary);
         }
-
-        Bond newBond = new Bond(name, value, interestRate, daysToMaturity, bank);
-        assetsList.add(newBond);
-        System.out.println("Bond created successfully.");
     }
 
-    public static void createMutualFund() {
-        System.out.println("\nEnter mutual fund name:");
-        String name = input.next();
-        System.out.println("Enter mutual fund value:");
-        float value = input.nextFloat();
-        System.out.println("Enter expense ratio:");
-        float expenseRatio = input.nextFloat();
-        System.out.println("Enter intermediary name:");
-        String intermediaryName = input.next();
-
-        MutualFundManager manager = findMutualFundManagerByName(intermediaryName);
-        if (manager == null) {
-            System.out.println("Mutual Fund Manager not found. Please create the mutual fund manager first.");
-            return;
-        }
-
-        MutualFund newMutualFund = new MutualFund(name, value, expenseRatio, manager);
-        assetsList.add(newMutualFund);
-        System.out.println("Mutual fund created successfully.");
+    if (brokers.isEmpty()) {
+        System.out.println("No brokers available. Please create a broker first.");
+        return;
     }
+
+    System.out.println("\nEnter stock name:");
+    String name = input.next();
+    System.out.println("Enter stock value:");
+    float value = input.nextFloat();
+    System.out.println("Enter ticker:");
+    String ticker = input.next();
+    System.out.println("Enter quantity:");
+    float quantity = input.nextFloat();
+    System.out.println("Enter yield:");
+    float yield = input.nextFloat();
+
+    System.out.println("\nSelect a broker from the list:");
+    for (int i = 0; i < brokers.size(); i++) {
+        System.out.println((i + 1) + ": " + brokers.get(i).displayIntermediary());
+    }
+
+    try {
+        int brokerSelection = input.nextInt();
+        if (brokerSelection > 0 && brokerSelection <= brokers.size()) {
+            Broker selectedBroker = brokers.get(brokerSelection - 1);
+            Stock newStock = new Stock(name, value, ticker, quantity, yield, selectedBroker);
+            assetsList.add(newStock);
+            System.out.println("Stock created successfully.");
+        } else {
+            System.err.println("Invalid selection.");
+        }
+    } catch (InputMismatchException e) {
+        System.err.println("Invalid input. Please enter an integer.");
+        input.next();
+    }
+}
+
+public static void createBond() {
+    if (intermediariesList.isEmpty()) {
+        System.out.println("No banks available. Please create a bank first.");
+        return;
+    }
+
+    List<Bank> banks = new ArrayList<>();
+    for (Intermediaries intermediary : intermediariesList) {
+        if (intermediary instanceof Bank) {
+            banks.add((Bank) intermediary);
+        }
+    }
+
+    if (banks.isEmpty()) {
+        System.out.println("No banks available. Please create a bank first.");
+        return;
+    }
+
+    System.out.println("\nEnter bond name:");
+    String name = input.next();
+    System.out.println("Enter bond value:");
+    float value = input.nextFloat();
+    System.out.println("Enter interest rate:");
+    float interestRate = input.nextFloat();
+    System.out.println("Enter days to maturity:");
+    int daysToMaturity = input.nextInt();
+
+    System.out.println("\nSelect a bank from the list:");
+    for (int i = 0; i < banks.size(); i++) {
+        System.out.println((i + 1) + ": " + banks.get(i).displayIntermediary());
+    }
+
+    try {
+        int bankSelection = input.nextInt();
+        if (bankSelection > 0 && bankSelection <= banks.size()) {
+            Bank selectedBank = banks.get(bankSelection - 1);
+            Bond newBond = new Bond(name, value, interestRate, daysToMaturity, selectedBank);
+            assetsList.add(newBond);
+            System.out.println("Bond created successfully.");
+        } else {
+            System.err.println("Invalid selection.");
+        }
+    } catch (InputMismatchException e) {
+        System.err.println("Invalid input. Please enter an integer.");
+        input.next();
+    }
+}
+
+public static void createMutualFund() {
+    if (intermediariesList.isEmpty()) {
+        System.out.println("No mutual fund managers available. Please create a mutual fund manager first.");
+        return;
+    }
+
+    List<MutualFundManager> managers = new ArrayList<>();
+    for (Intermediaries intermediary : intermediariesList) {
+        if (intermediary instanceof MutualFundManager) {
+            managers.add((MutualFundManager) intermediary);
+        }
+    }
+
+    if (managers.isEmpty()) {
+        System.out.println("No mutual fund managers available. Please create a mutual fund manager first.");
+        return;
+    }
+
+    System.out.println("\nEnter mutual fund name:");
+    String name = input.next();
+    System.out.println("Enter mutual fund value:");
+    float value = input.nextFloat();
+    System.out.println("Enter expense ratio:");
+    float expenseRatio = input.nextFloat();
+
+    System.out.println("\nSelect a mutual fund manager from the list:");
+    for (int i = 0; i < managers.size(); i++) {
+        System.out.println((i + 1) + ": " + managers.get(i).displayIntermediary());
+    }
+
+    try {
+        int managerSelection = input.nextInt();
+        if (managerSelection > 0 && managerSelection <= managers.size()) {
+            MutualFundManager selectedManager = managers.get(managerSelection - 1);
+            MutualFund newMutualFund = new MutualFund(name, value, expenseRatio, selectedManager);
+            assetsList.add(newMutualFund);
+            System.out.println("Mutual fund created successfully.");
+        } else {
+            System.err.println("Invalid selection.");
+        }
+    } catch (InputMismatchException e) {
+        System.err.println("Invalid input. Please enter an integer.");
+        input.next();
+    }
+}
 
     public static void createIntermediary() {
         do {
@@ -335,8 +411,12 @@ public class CLI {
 
     public static void readAssets() {
         System.out.println("\nList of Assets:");
-        for (Assets asset : assetsList) {
-            System.out.println(asset.toString());
+        if (assetsList.isEmpty()) {
+            System.out.println("No assets available.");
+        } else {
+            for (int i = 0; i < assetsList.size(); i++) {
+                System.out.println((i + 1) + ": " + assetsList.get(i).displayAsset());
+            }
         }
     }
 
@@ -350,18 +430,134 @@ public class CLI {
 
     public static void readIntermediaries() {
         System.out.println("\nList of Intermediaries:");
-        for (Intermediaries intermediary : intermediariesList) {
-            System.out.println(intermediary.toString());
+        // for (Intermediaries intermediary : intermediariesList) {
+        //     intermediary.displayIntermediary();
+        // }
+        if (intermediariesList.isEmpty()) {
+            System.out.println("No intermediaries available.");
+        } else {
+            for (int i = 0; i < intermediariesList.size(); i++) {
+                System.out.println((i + 1) + ": " + intermediariesList.get(i).displayIntermediary());
+            }
         }
     }
 
     public static void updateIntermediary() {
-        // Implement update functionality
+        do {
+            System.out.println("\nList of Intermediaries:");
+            if (intermediariesList.isEmpty()) {
+                System.out.println("No intermediaries available.");
+                return;
+            } else {
+                for (int i = 0; i < intermediariesList.size(); i++) {
+                    System.out.println((i + 1) + ": " + intermediariesList.get(i).displayIntermediary());
+                }
+                System.out.println((intermediariesList.size() + 1) + ": Back to Intermediaries Menu");
+            }
+    
+            System.out.println("\nSelect an intermediary to update:");
+    
+            try {
+                selection = input.nextInt();
+    
+                if (selection > 0 && selection <= intermediariesList.size()) {
+                    Intermediaries intermediaryToUpdate = intermediariesList.get(selection - 1);
+                    updateIntermediaryDetails(intermediaryToUpdate);
+                    System.out.println("Intermediary updated successfully.");
+                    return;
+                } else if (selection == intermediariesList.size() + 1) {
+                    return;
+                } else {
+                    System.err.println("Invalid Selection");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid input. Please enter an integer.");
+                input.next();
+            }
+        } while (true);
     }
+    
+    public static void updateIntermediaryDetails(Intermediaries intermediary) {
+        if (intermediary instanceof Broker) {
+            updateBrokerDetails((Broker) intermediary);
+        } else if (intermediary instanceof Bank) {
+            updateBankDetails((Bank) intermediary);
+        } else if (intermediary instanceof MutualFundManager) {
+            updateMutualFundManagerDetails((MutualFundManager) intermediary);
+        } else {
+            System.err.println("Unknown intermediary type.");
+        }
+    }
+    
+    public static void updateBrokerDetails(Broker broker) {
+        System.out.println("Enter new broker name (current: " + broker.get_name() + "):");
+        String name = input.next();
+        broker.set_name(name);
+    
+        System.out.println("Enter new commission (current: " + broker.get_commission() + "):");
+        float commission = input.nextFloat();
+        broker.set_commission(commission);
+    }
+    
+    public static void updateBankDetails(Bank bank) {
+        System.out.println("Enter new bank name (current: " + bank.get_name() + "):");
+        String name = input.next();
+        bank.set_name(name);
+    
+        System.out.println("Enter new interest rate (current: " + bank.get_interestRate() + "):");
+        float interestRate = input.nextFloat();
+        bank.set_interestRate(interestRate);
+    }
+    
+    public static void updateMutualFundManagerDetails(MutualFundManager manager) {
+        System.out.println("Enter new manager name (current: " + manager.get_name() + "):");
+        String name = input.next();
+        manager.set_name(name);
+    
+        System.out.println("Enter new management fee (current: " + manager.get_managementFee() + "):");
+        float managementFee = input.nextFloat();
+        manager.set_managementFee(managementFee);
+
+        System.out.println("Enter new employee number (current: " + manager.get_employeeNumber() + "):");
+        String employeeNumber = input.next();
+        manager.set_employeeNumber(employeeNumber);
+    }
+    
 
     public static void deleteIntermediary() {
-        // Implement delete functionality
-    }
+        do {
+            System.out.println("\nList of Intermediaries:");
+            if (intermediariesList.isEmpty()) {
+                System.out.println("No intermediaries available.");
+                return;
+            } else {
+                for (int i = 0; i < intermediariesList.size(); i++) {
+                    System.out.println((i + 1) + ": " + intermediariesList.get(i).displayIntermediary());
+                }
+                System.out.println((intermediariesList.size() + 1) + ": Back to Intermediaries Menu");
+            }
+    
+            System.out.println("\nSelect an intermediary to delete:");
+    
+            try {
+                selection = input.nextInt();
+    
+                if (selection > 0 && selection <= intermediariesList.size()) {
+                    Intermediaries intermediaryToDelete = intermediariesList.get(selection - 1);
+                    intermediariesList.remove(intermediaryToDelete);
+                    System.out.println("Intermediary deleted successfully.");
+                    return;
+                } else if (selection == intermediariesList.size() + 1) {
+                    return;
+                } else {
+                    System.err.println("Invalid Selection");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid input. Please enter an integer.");
+                input.next();
+            }
+        } while (true);
+    }    
 
     public static Broker findBrokerByName(String name) {
         for (Intermediaries intermediary : intermediariesList) {
