@@ -73,7 +73,13 @@ class Stock extends Assets {
 
     @Override
     public double calculateAnnualReturn(){
-        return get_yield()*get_quantity()*get_value();
+        Intermediaries intermediary = get_intermediary();
+
+        if (intermediary instanceof Broker) {
+            Broker broker = (Broker) intermediary;
+            return 365*(get_yield()-broker.get_commission()) * (get_value()*get_quantity());
+        }
+        return -1;
     }
 
     @Override
@@ -113,7 +119,17 @@ class Bond extends Assets {
 
     @Override
     public double calculateAnnualReturn(){
-        return get_interestRate()*get_value();
+        Intermediaries intermediary = get_intermediary();
+
+        if (intermediary instanceof Bank) {
+            if (get_daysToMaturity() < 365) {
+                Bank bank = (Bank) intermediary;
+                return get_daysToMaturity() * (get_interestRate() - bank.get_interestRate()) * get_value();
+            }else{
+                return 0;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -143,7 +159,13 @@ class MutualFund extends Assets {
 
     @Override
     public double calculateAnnualReturn(){
-        return get_value()*get_expenseRatio();
+        Intermediaries intermediary = get_intermediary();
+
+        if (intermediary instanceof MutualFundManager) {
+            MutualFundManager mutualFundManager = (MutualFundManager) intermediary;
+            return 365 * (get_value() * (get_expenseRatio() - mutualFundManager.get_managementFee()));
+        }
+        return -1;
     }
 
     @Override
