@@ -8,7 +8,7 @@ abstract class Assets {
     void set_name(String name){
         _name = name;
     }
-
+ 
     void set_value(float value){
         _value = value;
     }
