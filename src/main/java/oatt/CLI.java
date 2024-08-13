@@ -17,10 +17,10 @@ public class CLI {
             System.out.println("1. New Save");
             System.out.println("2. Load Save");
             System.out.println("3. Exit Application");
-
+    
             try {
                 selection = input.nextInt();
-
+    
                 switch (selection) {
                     case 1:
                         System.out.println("New save");
@@ -28,6 +28,8 @@ public class CLI {
                         break;
                     case 2:
                         System.out.println("Load save");
+                        loadState();
+                        MainMenu();
                         break;
                     case 3:
                         System.out.println("Exiting application...");
@@ -40,9 +42,9 @@ public class CLI {
                 System.err.println("Invalid input. Please enter an integer.");
                 input.next();
             }
-
+    
         } while (selection != 3);
-
+    
         input.close();
     }
 
@@ -53,10 +55,10 @@ public class CLI {
             System.out.println("2. Assets Menu");
             System.out.println("3. Intermediaries Menu");
             System.out.println("4. Exit and save");
-
+    
             try {
                 selection = input.nextInt();
-
+    
                 switch (selection) {
                     case 1: // Portfolio
                         System.out.println("Portfolio"); // to-do
@@ -68,8 +70,10 @@ public class CLI {
                         IntermediariesMenu();
                         break;
                     case 4: // Exit and save
+                        saveState();
                         System.out.println("Exiting and saving....");
-                        System.exit(0); // remember to change for save
+                        System.exit(0);
+                        break;
                     default:
                         System.err.println("Invalid Selection");
                         break;
@@ -78,9 +82,9 @@ public class CLI {
                 System.err.println("Invalid input. Please enter an integer.");
                 input.next();
             }
-
+    
         } while (true);
-    }
+    }    
 
     public static void AssetsMenu() {
         do {
@@ -687,4 +691,27 @@ public static void createMutualFund() {
             }
         } while (true);
     }
+    
+    public static void loadState() {
+        try {
+            StateLoader loader = new StateLoader();
+            assetsList = loader.loadAssets();
+            intermediariesList = loader.loadIntermediaries();
+            System.out.println("State loaded successfully.");
+        } catch (Exception e) {
+            System.err.println("Failed to load state: " + e.getMessage());
+        }
+    }
+    
+    public static void saveState() {
+        try {
+            StateSaver saver = new StateSaver();
+            saver.saveAssets(assetsList);
+            saver.saveIntermediaries(intermediariesList);
+            System.out.println("State saved successfully.");
+        } catch (Exception e) {
+            System.err.println("Failed to save state: " + e.getMessage());
+        }
+    }
+    
 }

@@ -1,9 +1,12 @@
 package oatt;
 
-abstract class Assets {
+import java.io.Serializable;
+
+abstract class Assets implements Serializable{
     private String _name;
     private float _value;
     private Intermediaries _intermediary;
+    private static final long serialVersionUID = 1L;
 
     void set_name(String name){
         _name = name;
@@ -37,6 +40,7 @@ abstract class Assets {
 class Stock extends Assets {
     private String _ticker;
     private float _quantity, _yield;
+    private static final long serialVersionUID = 1L;
 
     public Stock(String name, float value, String ticker, float quantity, float yield, Broker intermediary){
         set_name(name);
@@ -92,6 +96,7 @@ class Stock extends Assets {
 class Bond extends Assets {
     private float _interestRate;
     private int _daysToMaturity;
+    private static final long serialVersionUID = 1L;
 
     public Bond(String name, float value, float interestRate, int daysToMaturity, Bank intermediary){
         set_name(name);
@@ -141,6 +146,8 @@ class Bond extends Assets {
 
 class MutualFund extends Assets {
     private float _expenseRatio;
+    
+    private static final long serialVersionUID = 1L;
 
     public MutualFund(String name, float value, float expenseRatio, MutualFundManager intermediary){
         set_name(name);

@@ -1,7 +1,10 @@
 package oatt;
 
-abstract class Intermediaries {
+import java.io.Serializable;
+
+abstract class Intermediaries implements Serializable{
     private String _name;
+    private static final long serialVersionUID = 1L;
 
     void set_name(String name){
         _name = name;
@@ -16,6 +19,7 @@ abstract class Intermediaries {
 
 class Broker extends Intermediaries {
     private float _commission;
+    private static final long serialVersionUID = 1L;
 
     public Broker(String name, float commission){
         set_name(name);
@@ -38,6 +42,7 @@ class Broker extends Intermediaries {
 
 class Bank extends Intermediaries {
     private float _interestRate;
+    private static final long serialVersionUID = 1L;
 
     public Bank(String name, float interestRate){
         set_name(name);
@@ -61,6 +66,7 @@ class Bank extends Intermediaries {
 class MutualFundManager extends Intermediaries {
     private String _employeeNumber;
     private float _managementFee;
+    private static final long serialVersionUID = 1L;
 
     public MutualFundManager(String name, String employeeNumber, float managementFee){
         set_name(name);
