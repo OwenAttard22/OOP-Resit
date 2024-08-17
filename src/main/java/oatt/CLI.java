@@ -1,8 +1,19 @@
 package oatt;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CLI {
@@ -10,8 +21,24 @@ public class CLI {
     private static int selection = -1;
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
+    public static final String SAVE_DIRECTORY = "Saves/";
+    private static ArrayList<Portfolio> portfolioList = new ArrayList<>();
+    private static Date _date;
+
+    static Date get_date(){
+        return _date;
+    }
+
+    static void set_date(Date date){
+        _date = date;
+    }
+
+    static void increment_date(){
+        _date = new Date(_date.getTime() + 86400000);
+    }
 
     public static void InitMenu() {
+        set_date(new Date());
         do {
             System.out.println("\nInitialisation:");
             System.out.println("1. New Save");
@@ -61,7 +88,7 @@ public class CLI {
     
                 switch (selection) {
                     case 1: // Portfolio
-                        System.out.println("Portfolio"); // to-do
+                        PortfolioMenu();
                         break;
                     case 2: // Assets
                         AssetsMenu();
@@ -691,27 +718,166 @@ public static void createMutualFund() {
             }
         } while (true);
     }
+
+    public static void PortfolioMenu() {
+        do {
+            System.out.println("\nPortfolio Menu:");
+            System.out.println("1. Record Snapshot");
+            System.out.println("2. Display Historical Listings");
+            System.out.println("3. Calculate Annual Return");
+            System.out.println("4. Back to Main Menu");
     
+            try {
+                selection = input.nextInt();
+    
+                switch (selection) {
+                    case 1:
+                        recordSnapshot();
+                        break;
+                    case 2:
+                        displayHistoricalListings();
+                        break;
+                    case 3:
+                        annualReturn();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        System.err.println("Invalid Selection");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Invalid input. Please enter an integer.");
+                input.next();
+            }
+    
+        } while (true);
+    }
+    
+    
+    
+    @SuppressWarnings("unchecked")
     public static void loadState() {
+        File saveDir = new File(SAVE_DIRECTORY);
+        if (!saveDir.exists() || saveDir.listFiles().length == 0) {
+            System.out.println("No saves available.");
+            return;
+        }
+
+        File[] saves = saveDir.listFiles();
+        Arrays.sort(saves, Comparator.comparingLong(File::lastModified).reversed());
+
+        System.out.println("Available saves:");
+        for (int i = 0; i < saves.length; i++) {
+            System.out.println((i + 1) + ". " + saves[i].getName());
+        }
+
+        System.out.println("Select a save to load:");
         try {
-            StateLoader loader = new StateLoader();
-            assetsList = loader.loadAssets();
-            intermediariesList = loader.loadIntermediaries();
-            System.out.println("State loaded successfully.");
-        } catch (Exception e) {
-            System.err.println("Failed to load state: " + e.getMessage());
+            int saveSelection = input.nextInt();
+            if (saveSelection > 0 && saveSelection <= saves.length) {
+                String filename = saves[saveSelection - 1].getPath();
+                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+                    assetsList = (ArrayList<Assets>) in.readObject();
+                    intermediariesList = (ArrayList<Intermediaries>) in.readObject();
+                    portfolioList = (ArrayList<Portfolio>) in.readObject();
+                    System.out.println("State loaded from " + filename);
+                } catch (IOException | ClassNotFoundException e) {
+                    System.err.println("Error loading state: " + e.getMessage());
+                }
+            } else {
+                System.err.println("Invalid selection.");
+            }
+        } catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter an integer.");
+            input.next();
         }
     }
     
     public static void saveState() {
         try {
-            StateSaver saver = new StateSaver();
-            saver.saveAssets(assetsList);
-            saver.saveIntermediaries(intermediariesList);
-            System.out.println("State saved successfully.");
-        } catch (Exception e) {
-            System.err.println("Failed to save state: " + e.getMessage());
+            File saveDir = new File(SAVE_DIRECTORY);
+            if (!saveDir.exists()) {
+                saveDir.mkdirs();
+            }
+    
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String filename = SAVE_DIRECTORY + "state_" + timestamp + ".dat";
+    
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+                out.writeObject(assetsList);
+                out.writeObject(intermediariesList);
+                out.writeObject(portfolioList);
+                System.out.println("State saved to " + filename);
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving state: " + e.getMessage());
+        }
+    }    
+
+    private static void displayHistoricalListings() {
+        if (portfolioList.isEmpty() || portfolioList.get(0).get_historicalSnapshots().isEmpty()) {
+            System.out.println("No historical data available.");
+            return;
+        }
+
+        System.out.println("Choose sort order: 1 for Ascending, 2 for Descending");
+        int sortOrder = input.nextInt();
+        
+        Map<Date, ArrayList<String>> snapshots = portfolioList.get(0).get_historicalSnapshots();
+        List<Date> sortedDates = new ArrayList<>(snapshots.keySet());
+
+        if (sortOrder == 2) {
+            sortedDates.sort(Comparator.reverseOrder());
+        } else {
+            sortedDates.sort(Comparator.naturalOrder());
+        }
+
+        for (Date date : sortedDates) {
+            System.out.println("\nSnapshot on " + date);
+            List<String> details = snapshots.get(date);
+            for (String detail : details) {
+                System.out.println(detail);
+            }
         }
     }
+
+
+    private static void recordSnapshot() {
+        Date date = get_date();
+        increment_date();
+        ArrayList<String> snapshotDetails = new ArrayList<>();
     
-}
+        for (Assets asset : assetsList) {
+            Intermediaries intermediary = asset.get_intermediary();
+            snapshotDetails.add(asset.displayAsset() + " | " + (intermediary != null ? intermediary.displayIntermediary() : "No Intermediary"));
+        }
+    
+        if (!portfolioList.isEmpty()) {
+            portfolioList.get(0).get_historicalSnapshots().put(date, snapshotDetails);
+        } else {
+            Portfolio newPortfolio = new Portfolio(new ArrayList<>());
+            newPortfolio.get_historicalSnapshots().put(date, snapshotDetails);
+            portfolioList.add(newPortfolio);
+        }
+    
+        System.out.println("Snapshot recorded on " + date);
+    }
+
+    private static void annualReturn() {
+        if (assetsList.isEmpty()) {
+            System.out.println("No assets available to calculate returns.");
+            return;
+        }
+
+        double totalAnnualReturn = 0;
+        for (Assets asset : assetsList) {
+            totalAnnualReturn += asset.calculateAnnualReturn();
+        }
+
+        // System.out.println("Total Annual Return: " + totalAnnualReturn);
+        System.out.printf("Total Annual Return: %.2f%n", totalAnnualReturn);
+    }
+    
+    
+}   

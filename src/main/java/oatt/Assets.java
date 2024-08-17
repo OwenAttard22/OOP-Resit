@@ -81,7 +81,7 @@ class Stock extends Assets {
 
         if (intermediary instanceof Broker) {
             Broker broker = (Broker) intermediary;
-            return 365*(get_yield()-broker.get_commission()) * (get_value()*get_quantity());
+            return 365*(get_yield()+broker.get_commission()) * (get_value()*get_quantity()); // avoiding negative returns
         }
         return -1;
     }
@@ -129,7 +129,7 @@ class Bond extends Assets {
         if (intermediary instanceof Bank) {
             if (get_daysToMaturity() < 365) {
                 Bank bank = (Bank) intermediary;
-                return get_daysToMaturity() * (get_interestRate() - bank.get_interestRate()) * get_value();
+                return get_daysToMaturity() * (get_interestRate() + bank.get_interestRate()) * get_value(); // avoiding negative returns
             }else{
                 return 0;
             }
@@ -170,7 +170,7 @@ class MutualFund extends Assets {
 
         if (intermediary instanceof MutualFundManager) {
             MutualFundManager mutualFundManager = (MutualFundManager) intermediary;
-            return 365 * (get_value() * (get_expenseRatio() - mutualFundManager.get_managementFee()));
+            return 365 * (get_value() * (get_expenseRatio() + mutualFundManager.get_managementFee())); // avoiding negative returns
         }
         return -1;
     }
