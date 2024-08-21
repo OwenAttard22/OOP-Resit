@@ -7,7 +7,7 @@ abstract class Intermediaries implements Serializable{
     private static final long serialVersionUID = 1L;
 
     void set_name(String name){
-        _name = name;
+        _name = name;   
     }
 
     String get_name(){
