@@ -18,9 +18,9 @@ public class StateLoader {
         }
     }
 
-    public ArrayList<Portfolio> loadHistoricalSnapshots() throws IOException, ClassNotFoundException {
+    public ArrayList<HistoricalSnapshots> loadHistoricalSnapshots() throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Saves/historicalSnapshots.ser"))) {
-            return (ArrayList<Portfolio>) ois.readObject();
+            return (ArrayList<HistoricalSnapshots>) ois.readObject();
         }
     }
 }

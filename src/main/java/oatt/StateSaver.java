@@ -18,9 +18,9 @@ public class StateSaver {
         }
     }
 
-    public void saveHistoricalSnapshots(ArrayList<Portfolio> portfolioList) throws IOException {
+    public void saveHistoricalSnapshots(ArrayList<HistoricalSnapshots> historicalSnapshotsList) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Saves/historicalSnapshots.ser"))) {
-            oos.writeObject(portfolioList);
+            oos.writeObject(historicalSnapshotsList);
         }
     }
 }
