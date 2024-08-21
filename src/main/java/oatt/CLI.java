@@ -899,7 +899,7 @@ public static void createMutualFund() {
             }
     
             if (snapshot != null) {
-                snapshot = snapshot.recordSnapshot();
+                snapshot = snapshot.recordSnapshot(currentDate);
                 portfolioList.add(snapshot);
                 System.out.println("Snapshot recorded: " + snapshot.displaySnapshot());
             }
@@ -907,7 +907,7 @@ public static void createMutualFund() {
     
         System.out.println("Snapshot recorded on " + currentDate);
         System.out.println("Current portfolio list size: " + portfolioList.size());
-    }                
+    }                    
 
     private static void annualReturn() {
         if (assetsList.isEmpty()) {

@@ -47,8 +47,7 @@ abstract class HistoricalSnapshots implements Serializable {
 
     protected abstract List<String> generateSnapshotDetails();
 
-    public HistoricalSnapshots recordSnapshot() {
-        Date date = new Date();
+    public HistoricalSnapshots recordSnapshot(Date date) {
         _historicalSnapshots.put(date, generateSnapshotDetails());
         return this;
     }
