@@ -33,7 +33,7 @@ public class Portfolio implements Serializable {
         for (Assets asset : _assetsList) {
             Intermediaries intermediary = asset.get_intermediary();
             
-            String snapshotEntry = asset.displayAsset() + " | " + intermediary.displayIntermediary();
+            String snapshotEntry = asset.displayAsset() + " || " + intermediary.displayIntermediary();
             
             snapshot.add(snapshotEntry);
         }

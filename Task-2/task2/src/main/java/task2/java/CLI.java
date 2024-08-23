@@ -1,4 +1,4 @@
-package oatt;
+package task2.java;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,8 +21,8 @@ public class CLI {
     private static int selection = -1;
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
-    public static final String SAVE_DIRECTORY = "Task-1/Java Version/Saves/";
-    private static ArrayList<Portfolio> portfolioList = new ArrayList<>();
+    public static final String SAVE_DIRECTORY = "Task-2/Saves/";
+    private static ArrayList<HistoricalSnapshots> portfolioList = new ArrayList<>();
     private static Date _date;
 
     static Date get_date(){
@@ -752,9 +752,7 @@ public static void createMutualFund() {
             }
     
         } while (true);
-    }
-    
-    
+    }     
     
     @SuppressWarnings("unchecked")
     public static void loadState() {
@@ -780,7 +778,7 @@ public static void createMutualFund() {
                 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
                     assetsList = (ArrayList<Assets>) in.readObject();
                     intermediariesList = (ArrayList<Intermediaries>) in.readObject();
-                    portfolioList = (ArrayList<Portfolio>) in.readObject();
+                    portfolioList = (ArrayList<HistoricalSnapshots>) in.readObject();
                     System.out.println("State loaded from " + filename);
                 } catch (IOException | ClassNotFoundException e) {
                     System.err.println("Error loading state: " + e.getMessage());
@@ -813,56 +811,103 @@ public static void createMutualFund() {
         } catch (IOException e) {
             System.err.println("Error saving state: " + e.getMessage());
         }
-    }    
+    }
 
     private static void displayHistoricalListings() {
-        if (portfolioList.isEmpty() || portfolioList.get(0).get_historicalSnapshots().isEmpty()) {
+        if (portfolioList.isEmpty()) {
             System.out.println("No historical data available.");
             return;
         }
-
+    
         System.out.println("Choose sort order: 1 for Ascending, 2 for Descending");
         int sortOrder = input.nextInt();
-        
-        Map<Date, ArrayList<String>> snapshots = portfolioList.get(0).get_historicalSnapshots();
-        List<Date> sortedDates = new ArrayList<>(snapshots.keySet());
-
-        if (sortOrder == 2) {
-            sortedDates.sort(Comparator.reverseOrder());
-        } else {
-            sortedDates.sort(Comparator.naturalOrder());
-        }
-
-        for (Date date : sortedDates) {
-            System.out.println("\nSnapshot on " + date);
-            List<String> details = snapshots.get(date);
-            for (String detail : details) {
-                System.out.println(detail);
+    
+        portfolioList.sort((snapshot1, snapshot2) -> {
+            Date date1 = snapshot1.getHistoricalSnapshots().keySet().stream().findFirst().orElse(null);
+            Date date2 = snapshot2.getHistoricalSnapshots().keySet().stream().findFirst().orElse(null);
+    
+            if (date1 == null || date2 == null) {
+                System.err.println("Error: Snapshot date is null.");
+                return 0;
+            }
+    
+            return sortOrder == 2 ? date2.compareTo(date1) : date1.compareTo(date2);
+        });
+    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
+        for (HistoricalSnapshots snapshot : portfolioList) {
+            Map<Date, List<String>> historicalData = snapshot.getHistoricalSnapshots();
+    
+            for (Date date : historicalData.keySet()) {
+                System.out.println("\nSnapshot recorded on " + dateFormat.format(date) + ":");
+                System.out.println(snapshot.displaySnapshot());
             }
         }
-    }
-
+    }    
+           
 
     private static void recordSnapshot() {
-        Date date = get_date();
+        if (assetsList.isEmpty()) {
+            System.out.println("No assets available to record a snapshot.");
+            return;
+        }
+    
+        Date currentDate = get_date();
         increment_date();
-        ArrayList<String> snapshotDetails = new ArrayList<>();
     
         for (Assets asset : assetsList) {
-            Intermediaries intermediary = asset.get_intermediary();
-            snapshotDetails.add(asset.displayAsset() + " || " + (intermediary != null ? intermediary.displayIntermediary() : "No Intermediary"));
+            HistoricalSnapshots snapshot = null;
+    
+            if (asset instanceof Stock) {
+                Stock stock = (Stock) asset;
+                Broker broker = (Broker) stock.get_intermediary();
+                snapshot = new StockSnapshot.Builder()
+                        .setassetName(stock.get_name())
+                        .setassetValue(stock.get_value())
+                        .setticker(stock.get_ticker())
+                        .setquantity(stock.get_quantity())
+                        .setyield(stock.get_yield())
+                        .setintermediaryName(broker.get_name())
+                        .setcommission(broker.get_commission())
+                        .build();
+            } else if (asset instanceof Bond) {
+                Bond bond = (Bond) asset;
+                Bank bank = (Bank) bond.get_intermediary();
+                snapshot = new BondSnapshot.Builder()
+                        .setassetName(bond.get_name())
+                        .setassetValue(bond.get_value())
+                        .setinterestRate(bond.get_interestRate())
+                        .setdaysToMaturity(bond.get_daysToMaturity())
+                        .setintermediaryName(bank.get_name())
+                        .setintermediaryInterestRate(bank.get_interestRate())
+                        .build();
+            } else if (asset instanceof MutualFund) {
+                MutualFund mutualFund = (MutualFund) asset;
+                MutualFundManager manager = (MutualFundManager) mutualFund.get_intermediary();
+                snapshot = new MutualFundSnapshot.Builder()
+                        .setassetName(mutualFund.get_name())
+                        .setassetValue(mutualFund.get_value())
+                        .setexpenseRatio(mutualFund.get_expenseRatio())
+                        .setemployeeNumber(manager.get_employeeNumber())
+                        .setintermediaryName(manager.get_name())
+                        .setmanagementFee(manager.get_managementFee())
+                        .build();
+            } else {
+                System.err.println("Unsupported asset type.");
+                continue;
+            }
+    
+            if (snapshot != null) {
+                snapshot = snapshot.recordSnapshot(currentDate);
+                portfolioList.add(snapshot);
+                System.out.println("Snapshot recorded: " + snapshot.displaySnapshot());
+            }
         }
     
-        if (!portfolioList.isEmpty()) {
-            portfolioList.get(0).get_historicalSnapshots().put(date, snapshotDetails);
-        } else {
-            Portfolio newPortfolio = new Portfolio(new ArrayList<>());
-            newPortfolio.get_historicalSnapshots().put(date, snapshotDetails);
-            portfolioList.add(newPortfolio);
-        }
-    
-        System.out.println("Snapshot recorded on " + date);
-    }
+        System.out.println("Snapshot recorded on " + currentDate);
+        System.out.println("Current portfolio list size: " + portfolioList.size());
+    }                    
 
     private static void annualReturn() {
         if (assetsList.isEmpty()) {
