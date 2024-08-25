@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "CLI.h"
 
-int main(int, char**){
-    printf("Hello, from Task-1-C++!\n");
+int main(int, char**) {
+    CLI::InitMenu();
+    return 0;
 }
-

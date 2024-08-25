@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\Task-1-C++.dir\\main.cpp.obj -c \"C:\\Users\\owena\\OneDrive\\Desktop\\OOP-Resit\\OOP-Resit\\Task-1\\C++ Version\\main.cpp\"",
+  "file": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/main.cpp",
+  "output": "CMakeFiles/Task-1-C++.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\Task-1-C++.dir\\CLI.cpp.obj -c \"C:\\Users\\owena\\OneDrive\\Desktop\\OOP-Resit\\OOP-Resit\\Task-1\\C++ Version\\CLI.cpp\"",
+  "file": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/CLI.cpp",
+  "output": "CMakeFiles/Task-1-C++.dir/CLI.cpp.obj"
+},
+{
+  "directory": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\Task-1-C++.dir\\Assets.cpp.obj -c \"C:\\Users\\owena\\OneDrive\\Desktop\\OOP-Resit\\OOP-Resit\\Task-1\\C++ Version\\Assets.cpp\"",
+  "file": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/Assets.cpp",
+  "output": "CMakeFiles/Task-1-C++.dir/Assets.cpp.obj"
+},
+{
+  "directory": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\Task-1-C++.dir\\Intermediaries.cpp.obj -c \"C:\\Users\\owena\\OneDrive\\Desktop\\OOP-Resit\\OOP-Resit\\Task-1\\C++ Version\\Intermediaries.cpp\"",
+  "file": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/Intermediaries.cpp",
+  "output": "CMakeFiles/Task-1-C++.dir/Intermediaries.cpp.obj"
+},
+{
+  "directory": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\Task-1-C++.dir\\Portfolio.cpp.obj -c \"C:\\Users\\owena\\OneDrive\\Desktop\\OOP-Resit\\OOP-Resit\\Task-1\\C++ Version\\Portfolio.cpp\"",
+  "file": "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/Portfolio.cpp",
+  "output": "CMakeFiles/Task-1-C++.dir/Portfolio.cpp.obj"
+}
+]
