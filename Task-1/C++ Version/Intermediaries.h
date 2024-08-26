@@ -4,6 +4,12 @@
 #include <string>
 #include <fstream>
 
+enum IntermediaryType {
+    BROKER = 0,
+    BANK = 1,
+    MUTUAL_FUND_MANAGER = 2
+};
+
 class Intermediaries {
 protected:
     std::string _name;
@@ -15,6 +21,11 @@ public:
     std::string get_name() const;
 
     virtual std::string displayIntermediary() const = 0;
+
+    virtual IntermediaryType get_intermediary_type() const = 0;
+
+    virtual void serialize(std::ofstream& ofs) const = 0;
+    virtual void deserialize(std::ifstream& ifs) = 0;
 };
 
 class Broker : public Intermediaries {
@@ -29,6 +40,11 @@ public:
     float get_commission() const;
 
     std::string displayIntermediary() const override;
+
+    IntermediaryType get_intermediary_type() const override { return BROKER; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 class Bank : public Intermediaries {
@@ -43,6 +59,11 @@ public:
     float get_interestRate() const;
 
     std::string displayIntermediary() const override;
+
+    IntermediaryType get_intermediary_type() const override { return BANK; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 class MutualFundManager : public Intermediaries {
@@ -61,6 +82,11 @@ public:
     float get_managementFee() const;
 
     std::string displayIntermediary() const override;
+
+    IntermediaryType get_intermediary_type() const override { return MUTUAL_FUND_MANAGER; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 #endif

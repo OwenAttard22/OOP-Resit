@@ -1,0 +1,3 @@
+C:\Users\owena\AppData\Local\Programs\Python\Python310\Lib\site-packages\cmake\data\bin\cmake.exe -E rm -f CMakeFiles\Task-1-C++.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\Task-1-C++.dir/objects.a @CMakeFiles\Task-1-C++.dir\objects1.rsp
+C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\Task-1-C++.dir/objects.a -Wl,--no-whole-archive -o Task-1-C++.exe -Wl,--out-implib,libTask-1-C++.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Task-1-C++.dir\linkLibs.rsp

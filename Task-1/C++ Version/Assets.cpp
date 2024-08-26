@@ -1,4 +1,5 @@
 #include "Assets.h"
+#include "SaveHelper.h"
 
 void Assets::set_name(const std::string& name) {
     _name = name;
@@ -72,6 +73,50 @@ std::string Stock::displayAsset() const {
            ", Dividend Yield: " + std::to_string(get_yield());
 }
 
+void Stock::serialize(std::ofstream& ofs) const {
+    writeString(ofs, _name);
+    ofs.write(reinterpret_cast<const char*>(&_value), sizeof(_value));
+
+    IntermediaryType type = _intermediary->get_intermediary_type();
+    ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
+
+    _intermediary->serialize(ofs);
+
+    writeString(ofs, _ticker);
+    ofs.write(reinterpret_cast<const char*>(&_quantity), sizeof(_quantity));
+    ofs.write(reinterpret_cast<const char*>(&_yield), sizeof(_yield));
+}
+
+void Stock::deserialize(std::ifstream& ifs) {
+    readString(ifs, _name);
+    ifs.read(reinterpret_cast<char*>(&_value), sizeof(_value));
+
+    IntermediaryType type;
+    ifs.read(reinterpret_cast<char*>(&type), sizeof(type));
+
+    switch (type) {
+        case BROKER:
+            _intermediary = new Broker();
+            break;
+        case BANK:
+            _intermediary = new Bank();
+            break;
+        case MUTUAL_FUND_MANAGER:
+            _intermediary = new MutualFundManager();
+            break;
+        default:
+            _intermediary = nullptr;
+            break;
+    }
+    if (_intermediary) {
+        _intermediary->deserialize(ifs);
+    }
+
+    readString(ifs, _ticker);
+    ifs.read(reinterpret_cast<char*>(&_quantity), sizeof(_quantity));
+    ifs.read(reinterpret_cast<char*>(&_yield), sizeof(_yield));
+}
+
 Bond::Bond(const std::string& name, float value, float interestRate, int daysToMaturity, Bank* intermediary) {
     set_name(name);
     set_value(value);
@@ -115,6 +160,48 @@ std::string Bond::displayAsset() const {
            ", Days to Maturity: " + std::to_string(get_daysToMaturity());
 }
 
+void Bond::serialize(std::ofstream& ofs) const {
+    writeString(ofs, _name);
+    ofs.write(reinterpret_cast<const char*>(&_value), sizeof(_value));
+
+    IntermediaryType type = _intermediary->get_intermediary_type();
+    ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
+
+    _intermediary->serialize(ofs);
+
+    ofs.write(reinterpret_cast<const char*>(&_interestRate), sizeof(_interestRate));
+    ofs.write(reinterpret_cast<const char*>(&_daysToMaturity), sizeof(_daysToMaturity));
+}
+
+void Bond::deserialize(std::ifstream& ifs) {
+    readString(ifs, _name);
+    ifs.read(reinterpret_cast<char*>(&_value), sizeof(_value));
+
+    IntermediaryType type;
+    ifs.read(reinterpret_cast<char*>(&type), sizeof(type));
+
+    switch (type) {
+        case BROKER:
+            _intermediary = new Broker();
+            break;
+        case BANK:
+            _intermediary = new Bank();
+            break;
+        case MUTUAL_FUND_MANAGER:
+            _intermediary = new MutualFundManager();
+            break;
+        default:
+            _intermediary = nullptr;
+            break;
+    }
+    if (_intermediary) {
+        _intermediary->deserialize(ifs);
+    }
+
+    ifs.read(reinterpret_cast<char*>(&_interestRate), sizeof(_interestRate));
+    ifs.read(reinterpret_cast<char*>(&_daysToMaturity), sizeof(_daysToMaturity));
+}
+
 MutualFund::MutualFund(const std::string& name, float value, float expenseRatio, MutualFundManager* intermediary) {
     set_name(name);
     set_value(value);
@@ -142,4 +229,44 @@ double MutualFund::calculateAnnualReturn() const {
 std::string MutualFund::displayAsset() const {
     return "Mutual Fund: " + get_name() + ", Value: " + std::to_string(get_value()) +
            ", Expense Ratio: " + std::to_string(get_expenseRatio());
+}
+
+void MutualFund::serialize(std::ofstream& ofs) const {
+    writeString(ofs, _name);
+    ofs.write(reinterpret_cast<const char*>(&_value), sizeof(_value));
+
+    IntermediaryType type = _intermediary->get_intermediary_type();
+    ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
+
+    _intermediary->serialize(ofs);
+
+    ofs.write(reinterpret_cast<const char*>(&_expenseRatio), sizeof(_expenseRatio));
+}
+
+void MutualFund::deserialize(std::ifstream& ifs) {
+    readString(ifs, _name);
+    ifs.read(reinterpret_cast<char*>(&_value), sizeof(_value));
+
+    IntermediaryType type;
+    ifs.read(reinterpret_cast<char*>(&type), sizeof(type));
+
+    switch (type) {
+        case BROKER:
+            _intermediary = new Broker();
+            break;
+        case BANK:
+            _intermediary = new Bank();
+            break;
+        case MUTUAL_FUND_MANAGER:
+            _intermediary = new MutualFundManager();
+            break;
+        default:
+            _intermediary = nullptr;
+            break;
+    }
+    if (_intermediary) {
+        _intermediary->deserialize(ifs);
+    }
+
+    ifs.read(reinterpret_cast<char*>(&_expenseRatio), sizeof(_expenseRatio));
 }

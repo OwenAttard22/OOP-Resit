@@ -4,13 +4,13 @@
 #include <string>
 #include <fstream>
 #include "Intermediaries.h"
+#include <iostream>
 
 enum AssetType {
     STOCK = 0,
     BOND = 1,
     MUTUAL_FUND = 2
 };
-
 
 class Assets {
 protected:
@@ -33,8 +33,10 @@ public:
     virtual std::string displayAsset() const = 0;
 
     virtual AssetType get_type() const = 0;
-};
 
+    virtual void serialize(std::ofstream& ofs) const = 0;
+    virtual void deserialize(std::ifstream& ifs) = 0;
+};
 
 class Stock : public Assets {
 private:
@@ -58,6 +60,9 @@ public:
     std::string displayAsset() const override;
 
     AssetType get_type() const override { return STOCK; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 class Bond : public Assets {
@@ -79,6 +84,9 @@ public:
     std::string displayAsset() const override;
 
     AssetType get_type() const override { return BOND; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 class MutualFund : public Assets {
@@ -96,6 +104,9 @@ public:
     std::string displayAsset() const override;
 
     AssetType get_type() const override { return MUTUAL_FUND; }
+
+    void serialize(std::ofstream& ofs) const override;
+    void deserialize(std::ifstream& ifs) override;
 };
 
 #endif
