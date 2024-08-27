@@ -26,9 +26,8 @@ public:
     void recordSnapshot(std::time_t date);
     void displayHistoricalListings(std::time_t startDate, std::time_t endDate) const;
 
-    // Serialization
     void serialize(std::ofstream& ofs) const;
-    void deserialize(std::ifstream& ifs, const std::vector<Assets*>& allAssets);  // Use existing assets
+    void deserialize(std::ifstream& ifs, const std::vector<Assets*>& allAssets);
 };
 
 #endif

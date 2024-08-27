@@ -6,7 +6,6 @@ Portfolio::Portfolio(const std::vector<Assets*>& assetsList) {
 }
 
 Portfolio::~Portfolio() {
-    // No need to delete assets here if the ownership is managed elsewhere
 }
 
 void Portfolio::set_assetsList(const std::vector<Assets*>& assetsList) {
@@ -51,22 +50,18 @@ void Portfolio::displayHistoricalListings(std::time_t startDate, std::time_t end
 }
 
 void Portfolio::serialize(std::ofstream& ofs) const {
-    // Serialize the size of the asset list
     size_t assetsSize = _assetsList.size();
     ofs.write(reinterpret_cast<const char*>(&assetsSize), sizeof(assetsSize));
 
-    // Serialize each asset directly
     for (const auto& asset : _assetsList) {
         AssetType type = asset->get_type();
         ofs.write(reinterpret_cast<const char*>(&type), sizeof(type));
         asset->serialize(ofs);
     }
 
-    // Serialize the size of the historical snapshots map
     size_t snapshotsSize = _historicalSnapshots.size();
     ofs.write(reinterpret_cast<const char*>(&snapshotsSize), sizeof(snapshotsSize));
 
-    // Serialize each snapshot
     for (const auto& snapshot : _historicalSnapshots) {
         std::time_t date = snapshot.first;
         ofs.write(reinterpret_cast<const char*>(&date), sizeof(date));
@@ -83,11 +78,9 @@ void Portfolio::serialize(std::ofstream& ofs) const {
 }
 
 void Portfolio::deserialize(std::ifstream& ifs, const std::vector<Assets*>& allAssets) {
-    // Deserialize the size of the asset list
     size_t assetsSize;
     ifs.read(reinterpret_cast<char*>(&assetsSize), sizeof(assetsSize));
 
-    // Deserialize each asset directly
     for (size_t i = 0; i < assetsSize; ++i) {
         AssetType type;
         ifs.read(reinterpret_cast<char*>(&type), sizeof(type));
@@ -110,11 +103,9 @@ void Portfolio::deserialize(std::ifstream& ifs, const std::vector<Assets*>& allA
         }
     }
 
-    // Deserialize the size of the historical snapshots map
     size_t snapshotsSize;
     ifs.read(reinterpret_cast<char*>(&snapshotsSize), sizeof(snapshotsSize));
 
-    // Deserialize each snapshot
     for (size_t i = 0; i < snapshotsSize; ++i) {
         std::time_t date;
         ifs.read(reinterpret_cast<char*>(&date), sizeof(date));

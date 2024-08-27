@@ -747,7 +747,6 @@ void CLI::displayHistoricalListings() {
 }
 
 void CLI::loadState() {
-    // List all save files in the save directory
     std::vector<std::string> saveFiles;
     for (const auto& entry : std::filesystem::directory_iterator(SAVE_DIRECTORY)) {
         if (entry.is_regular_file()) {
@@ -755,13 +754,11 @@ void CLI::loadState() {
         }
     }
 
-    // Check if there are any save files available
     if (saveFiles.empty()) {
         std::cout << "No save files available in the directory.\n";
         return;
     }
 
-    // Display the list of save files as a menu
     std::cout << "\nSelect a save file to load:\n";
     for (size_t i = 0; i < saveFiles.size(); ++i) {
         std::cout << (i + 1) << ". " << saveFiles[i] << "\n";
@@ -769,12 +766,10 @@ void CLI::loadState() {
 
     std::cout << (saveFiles.size() + 1) << ". Cancel\n";
 
-    // Get the user's selection
     int selection;
     std::cin >> selection;
 
     if (selection > 0 && static_cast<size_t>(selection) <= saveFiles.size()) {
-        // Load the selected save file
         std::string selectedFile = SAVE_DIRECTORY + saveFiles[selection - 1];
         std::ifstream inFile(selectedFile, std::ios::binary);
 
@@ -783,7 +778,6 @@ void CLI::loadState() {
             return;
         }
 
-        // Clear current lists to avoid memory leaks
         for (auto& asset : assetsList) delete asset;
         for (auto& intermediary : intermediariesList) delete intermediary;
         for (auto& portfolio : portfolioList) delete portfolio;
@@ -792,7 +786,6 @@ void CLI::loadState() {
         intermediariesList.clear();
         portfolioList.clear();
 
-        // Deserialize intermediaries
         size_t intermediariesSize;
         inFile.read(reinterpret_cast<char*>(&intermediariesSize), sizeof(intermediariesSize));
         for (size_t i = 0; i < intermediariesSize; ++i) {
@@ -817,7 +810,6 @@ void CLI::loadState() {
             }
         }
 
-        // Deserialize assets
         size_t assetsSize;
         inFile.read(reinterpret_cast<char*>(&assetsSize), sizeof(assetsSize));
         for (size_t i = 0; i < assetsSize; ++i) {
@@ -842,11 +834,10 @@ void CLI::loadState() {
             }
         }
 
-        // Deserialize portfolios
         size_t portfolioSize;
         inFile.read(reinterpret_cast<char*>(&portfolioSize), sizeof(portfolioSize));
         for (size_t i = 0; i < portfolioSize; ++i) {
-            Portfolio* portfolio = new Portfolio(assetsList);  // Pass assetsList to maintain references
+            Portfolio* portfolio = new Portfolio(assetsList);
             portfolio->deserialize(inFile, assetsList);
             portfolioList.push_back(portfolio);
         }
@@ -878,7 +869,6 @@ void CLI::saveState() {
         return;
     }
 
-    // Serialize intermediaries
     size_t intermediariesSize = intermediariesList.size();
     outFile.write(reinterpret_cast<const char*>(&intermediariesSize), sizeof(intermediariesSize));
     for (const auto& intermediary : intermediariesList) {
@@ -887,7 +877,6 @@ void CLI::saveState() {
         intermediary->serialize(outFile);
     }
 
-    // Serialize assets
     size_t assetsSize = assetsList.size();
     outFile.write(reinterpret_cast<const char*>(&assetsSize), sizeof(assetsSize));
     for (const auto& asset : assetsList) {
@@ -896,7 +885,6 @@ void CLI::saveState() {
         asset->serialize(outFile);
     }
 
-    // Serialize portfolios
     size_t portfolioSize = portfolioList.size();
     outFile.write(reinterpret_cast<const char*>(&portfolioSize), sizeof(portfolioSize));
     for (const auto& portfolio : portfolioList) {
