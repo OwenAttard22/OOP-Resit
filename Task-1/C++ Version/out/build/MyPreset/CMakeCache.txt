@@ -154,7 +154,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Task-1-C++
+CMAKE_PROJECT_NAME:STATIC=Task-3-C++
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=0.1.0
@@ -262,6 +262,15 @@ Task-1-C++_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Task-1-C++_SOURCE_DIR:STATIC=C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version
+
+//Value Computed by CMake
+Task-3-C++_BINARY_DIR:STATIC=C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset
+
+//Value Computed by CMake
+Task-3-C++_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Task-3-C++_SOURCE_DIR:STATIC=C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version
 
 
 ########################

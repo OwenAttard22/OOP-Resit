@@ -128,6 +128,19 @@ Task-1-C++/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/build
 .PHONY : Task-1-C++/fast
 
+#=============================================================================
+# Target rules for targets named Task-3-C++
+
+# Build rule for target.
+Task-3-C++: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Task-3-C++
+.PHONY : Task-3-C++
+
+# fast build rule for target.
+Task-3-C++/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/build
+.PHONY : Task-3-C++/fast
+
 Assets.obj: Assets.cpp.obj
 .PHONY : Assets.obj
 
@@ -175,6 +188,30 @@ CLI.s: CLI.cpp.s
 CLI.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/CLI.cpp.s
 .PHONY : CLI.cpp.s
+
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj
+
+# target to build an object file
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
+
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i
+
+# target to preprocess a source file
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
+
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s
+
+# target to generate assembly for a file
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
 
 Intermediaries.obj: Intermediaries.cpp.obj
 .PHONY : Intermediaries.obj
@@ -281,12 +318,16 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Task-1-C++
+	@echo ... Task-3-C++
 	@echo ... Assets.obj
 	@echo ... Assets.i
 	@echo ... Assets.s
 	@echo ... CLI.obj
 	@echo ... CLI.i
 	@echo ... CLI.s
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s
 	@echo ... Intermediaries.obj
 	@echo ... Intermediaries.i
 	@echo ... Intermediaries.s

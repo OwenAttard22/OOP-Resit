@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -27,10 +28,11 @@
 					[
 						0
 					],
-					"name" : "Task-1-C++",
+					"name" : "Task-3-C++",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -41,6 +43,13 @@
 					"id" : "Task-1-C++::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-Task-1-C++-Debug-d9ad98eb914b661c5e36.json",
 					"name" : "Task-1-C++",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Task-3-C++::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Task-3-C++-Debug-256187d158d907d904fd.json",
+					"name" : "Task-3-C++",
 					"projectIndex" : 0
 				}
 			]
