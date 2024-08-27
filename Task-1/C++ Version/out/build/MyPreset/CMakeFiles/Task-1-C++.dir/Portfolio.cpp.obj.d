@@ -159,4 +159,5 @@ CMakeFiles/Task-1-C++.dir/Portfolio.cpp.obj: \
  C:/msys64/ucrt64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++io.h \
  C:/msys64/ucrt64/include/c++/14.1.0/bits/fstream.tcc \
  C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++\ Version\Assets.h \
- C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++\ Version\Intermediaries.h
+ C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++\ Version\Intermediaries.h \
+ C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++\ Version\SaveHelper.h

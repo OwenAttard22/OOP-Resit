@@ -5,6 +5,8 @@
 #include <fstream>
 #include <filesystem>
 #include <vector>
+#include <iostream>
+#include <string>
 
 int CLI::selection = -1;
 std::vector<Assets*> CLI::assetsList;
@@ -745,7 +747,122 @@ void CLI::displayHistoricalListings() {
 }
 
 void CLI::loadState() {
-    // to do
+    // List all save files in the save directory
+    std::vector<std::string> saveFiles;
+    for (const auto& entry : std::filesystem::directory_iterator(SAVE_DIRECTORY)) {
+        if (entry.is_regular_file()) {
+            saveFiles.push_back(entry.path().filename().string());
+        }
+    }
+
+    // Check if there are any save files available
+    if (saveFiles.empty()) {
+        std::cout << "No save files available in the directory.\n";
+        return;
+    }
+
+    // Display the list of save files as a menu
+    std::cout << "\nSelect a save file to load:\n";
+    for (size_t i = 0; i < saveFiles.size(); ++i) {
+        std::cout << (i + 1) << ". " << saveFiles[i] << "\n";
+    }
+
+    std::cout << (saveFiles.size() + 1) << ". Cancel\n";
+
+    // Get the user's selection
+    int selection;
+    std::cin >> selection;
+
+    if (selection > 0 && static_cast<size_t>(selection) <= saveFiles.size()) {
+        // Load the selected save file
+        std::string selectedFile = SAVE_DIRECTORY + saveFiles[selection - 1];
+        std::ifstream inFile(selectedFile, std::ios::binary);
+
+        if (!inFile) {
+            std::cerr << "Error opening file for loading state. Filename: " << selectedFile << "\n";
+            return;
+        }
+
+        // Clear current lists to avoid memory leaks
+        for (auto& asset : assetsList) delete asset;
+        for (auto& intermediary : intermediariesList) delete intermediary;
+        for (auto& portfolio : portfolioList) delete portfolio;
+
+        assetsList.clear();
+        intermediariesList.clear();
+        portfolioList.clear();
+
+        // Deserialize intermediaries
+        size_t intermediariesSize;
+        inFile.read(reinterpret_cast<char*>(&intermediariesSize), sizeof(intermediariesSize));
+        for (size_t i = 0; i < intermediariesSize; ++i) {
+            IntermediaryType type;
+            inFile.read(reinterpret_cast<char*>(&type), sizeof(type));
+
+            Intermediaries* intermediary = nullptr;
+            switch (type) {
+                case BROKER:
+                    intermediary = new Broker();
+                    break;
+                case BANK:
+                    intermediary = new Bank();
+                    break;
+                case MUTUAL_FUND_MANAGER:
+                    intermediary = new MutualFundManager();
+                    break;
+            }
+            if (intermediary) {
+                intermediary->deserialize(inFile);
+                intermediariesList.push_back(intermediary);
+            }
+        }
+
+        // Deserialize assets
+        size_t assetsSize;
+        inFile.read(reinterpret_cast<char*>(&assetsSize), sizeof(assetsSize));
+        for (size_t i = 0; i < assetsSize; ++i) {
+            AssetType type;
+            inFile.read(reinterpret_cast<char*>(&type), sizeof(type));
+
+            Assets* asset = nullptr;
+            switch (type) {
+                case STOCK:
+                    asset = new Stock();
+                    break;
+                case BOND:
+                    asset = new Bond();
+                    break;
+                case MUTUAL_FUND:
+                    asset = new MutualFund();
+                    break;
+            }
+            if (asset) {
+                asset->deserialize(inFile);
+                assetsList.push_back(asset);
+            }
+        }
+
+        // Deserialize portfolios
+        size_t portfolioSize;
+        inFile.read(reinterpret_cast<char*>(&portfolioSize), sizeof(portfolioSize));
+        for (size_t i = 0; i < portfolioSize; ++i) {
+            Portfolio* portfolio = new Portfolio(assetsList);  // Pass assetsList to maintain references
+            portfolio->deserialize(inFile, assetsList);
+            portfolioList.push_back(portfolio);
+        }
+
+        inFile.close();
+
+        if (!inFile) {
+            std::cerr << "Error occurred while loading the state.\n";
+        } else {
+            std::cout << "State loaded successfully from " << selectedFile << ".\n";
+        }
+    } else if (selection == static_cast<int>(saveFiles.size() + 1)) {
+        std::cout << "Loading state canceled.\n";
+    } else {
+        std::cerr << "Invalid selection.\n";
+    }
 }
 
 void CLI::saveState() {
@@ -761,109 +878,29 @@ void CLI::saveState() {
         return;
     }
 
+    // Serialize intermediaries
     size_t intermediariesSize = intermediariesList.size();
     outFile.write(reinterpret_cast<const char*>(&intermediariesSize), sizeof(intermediariesSize));
-    std::cout << "Intermediaries list size: " << intermediariesSize << "\n";
-
     for (const auto& intermediary : intermediariesList) {
-        if (dynamic_cast<Broker*>(intermediary)) {
-            outFile.put(0);
-            Broker* broker = dynamic_cast<Broker*>(intermediary);
-            float commission = broker->get_commission();
-            outFile.write(reinterpret_cast<const char*>(&commission), sizeof(commission));
-        } else if (dynamic_cast<Bank*>(intermediary)) {
-            outFile.put(1);
-            Bank* bank = dynamic_cast<Bank*>(intermediary);
-            float interestRate = bank->get_interestRate();
-            outFile.write(reinterpret_cast<const char*>(&interestRate), sizeof(interestRate));
-        } else if (dynamic_cast<MutualFundManager*>(intermediary)) {
-            outFile.put(2);
-            MutualFundManager* manager = dynamic_cast<MutualFundManager*>(intermediary);
-            std::string employeeNumber = manager->get_employeeNumber();
-            float managementFee = manager->get_managementFee();
-            size_t empNumLength = employeeNumber.size();
-            outFile.write(reinterpret_cast<const char*>(&empNumLength), sizeof(empNumLength));
-            outFile.write(employeeNumber.c_str(), empNumLength);
-            outFile.write(reinterpret_cast<const char*>(&managementFee), sizeof(managementFee));
-        }
-
-        std::string name = intermediary->get_name();
-        size_t nameLength = name.size();
-        outFile.write(reinterpret_cast<const char*>(&nameLength), sizeof(nameLength));
-        outFile.write(name.c_str(), nameLength);
-
-        std::cout << "Saved intermediary: " << name << "\n";
+        IntermediaryType type = intermediary->get_intermediary_type();
+        outFile.write(reinterpret_cast<const char*>(&type), sizeof(type));
+        intermediary->serialize(outFile);
     }
 
+    // Serialize assets
     size_t assetsSize = assetsList.size();
     outFile.write(reinterpret_cast<const char*>(&assetsSize), sizeof(assetsSize));
-    std::cout << "Assets list size: " << assetsSize << "\n";
-
     for (const auto& asset : assetsList) {
         AssetType type = asset->get_type();
         outFile.write(reinterpret_cast<const char*>(&type), sizeof(type));
-
-        std::string name = asset->get_name();
-        float value = asset->get_value();
-        size_t nameLength = name.size();
-        outFile.write(reinterpret_cast<const char*>(&nameLength), sizeof(nameLength));
-        outFile.write(name.c_str(), nameLength);
-        outFile.write(reinterpret_cast<const char*>(&value), sizeof(value));
-
-        if (type == STOCK) {
-            Stock* stock = dynamic_cast<Stock*>(asset);
-            std::string ticker = stock->get_ticker();
-            float quantity = stock->get_quantity();
-            float yield = stock->get_yield();
-
-            size_t tickerLength = ticker.size();
-            outFile.write(reinterpret_cast<const char*>(&tickerLength), sizeof(tickerLength));
-            outFile.write(ticker.c_str(), tickerLength);
-            outFile.write(reinterpret_cast<const char*>(&quantity), sizeof(quantity));
-            outFile.write(reinterpret_cast<const char*>(&yield), sizeof(yield));
-        } else if (type == BOND) {
-            Bond* bond = dynamic_cast<Bond*>(asset);
-            float interestRate = bond->get_interestRate();
-            int daysToMaturity = bond->get_daysToMaturity();
-
-            outFile.write(reinterpret_cast<const char*>(&interestRate), sizeof(interestRate));
-            outFile.write(reinterpret_cast<const char*>(&daysToMaturity), sizeof(daysToMaturity));
-        } else if (type == MUTUAL_FUND) {
-            MutualFund* mutualFund = dynamic_cast<MutualFund*>(asset);
-            float expenseRatio = mutualFund->get_expenseRatio();
-
-            outFile.write(reinterpret_cast<const char*>(&expenseRatio), sizeof(expenseRatio));
-        }
-
-        auto it = std::find(intermediariesList.begin(), intermediariesList.end(), asset->get_intermediary());
-        size_t intermediaryIndex = std::distance(intermediariesList.begin(), it);
-        outFile.write(reinterpret_cast<const char*>(&intermediaryIndex), sizeof(intermediaryIndex));
-        std::cout << "Saved asset: " << name << " with intermediary index: " << intermediaryIndex << "\n";
+        asset->serialize(outFile);
     }
 
+    // Serialize portfolios
     size_t portfolioSize = portfolioList.size();
     outFile.write(reinterpret_cast<const char*>(&portfolioSize), sizeof(portfolioSize));
-    std::cout << "Portfolio list size: " << portfolioSize << "\n";
-
     for (const auto& portfolio : portfolioList) {
-        auto snapshots = portfolio->get_historicalSnapshots();
-        size_t snapshotsSize = snapshots.size();
-        outFile.write(reinterpret_cast<const char*>(&snapshotsSize), sizeof(snapshotsSize));
-
-        for (const auto& snapshot : snapshots) {
-            std::time_t date = snapshot.first;
-            outFile.write(reinterpret_cast<const char*>(&date), sizeof(date));
-
-            size_t snapshotEntriesSize = snapshot.second.size();
-            outFile.write(reinterpret_cast<const char*>(&snapshotEntriesSize), sizeof(snapshotEntriesSize));
-
-            for (const auto& entry : snapshot.second) {
-                size_t entryLength = entry.size();
-                outFile.write(reinterpret_cast<const char*>(&entryLength), sizeof(entryLength));
-                outFile.write(entry.c_str(), entryLength);
-            }
-        }
-        std::cout << "Saved portfolio with " << snapshotsSize << " snapshots\n";
+        portfolio->serialize(outFile);
     }
 
     outFile.close();
