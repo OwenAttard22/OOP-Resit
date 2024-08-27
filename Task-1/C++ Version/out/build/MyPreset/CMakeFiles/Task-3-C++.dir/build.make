@@ -82,19 +82,99 @@ CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Ta
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\main2.cpp -o CMakeFiles\Task-3-C++.dir\C_\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\main2.cpp.s
 
+CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj: CMakeFiles/Task-3-C++.dir/flags.make
+CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj: C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp
+CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj: CMakeFiles/Task-3-C++.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj -MF CMakeFiles\Task-3-C++.dir\C_\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp.obj.d -o CMakeFiles\Task-3-C++.dir\C_\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp.obj -c C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp
+
+CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp > CMakeFiles\Task-3-C++.dir\C_\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp.i
+
+CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp -o CMakeFiles\Task-3-C++.dir\C_\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-3\CLI2.cpp.s
+
+CMakeFiles/Task-3-C++.dir/Assets.cpp.obj: CMakeFiles/Task-3-C++.dir/flags.make
+CMakeFiles/Task-3-C++.dir/Assets.cpp.obj: C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++\ Version/Assets.cpp
+CMakeFiles/Task-3-C++.dir/Assets.cpp.obj: CMakeFiles/Task-3-C++.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Task-3-C++.dir/Assets.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task-3-C++.dir/Assets.cpp.obj -MF CMakeFiles\Task-3-C++.dir\Assets.cpp.obj.d -o CMakeFiles\Task-3-C++.dir\Assets.cpp.obj -c "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Assets.cpp"
+
+CMakeFiles/Task-3-C++.dir/Assets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task-3-C++.dir/Assets.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Assets.cpp" > CMakeFiles\Task-3-C++.dir\Assets.cpp.i
+
+CMakeFiles/Task-3-C++.dir/Assets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/Assets.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Assets.cpp" -o CMakeFiles\Task-3-C++.dir\Assets.cpp.s
+
+CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj: CMakeFiles/Task-3-C++.dir/flags.make
+CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj: C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++\ Version/Intermediaries.cpp
+CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj: CMakeFiles/Task-3-C++.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj -MF CMakeFiles\Task-3-C++.dir\Intermediaries.cpp.obj.d -o CMakeFiles\Task-3-C++.dir\Intermediaries.cpp.obj -c "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Intermediaries.cpp"
+
+CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Intermediaries.cpp" > CMakeFiles\Task-3-C++.dir\Intermediaries.cpp.i
+
+CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Intermediaries.cpp" -o CMakeFiles\Task-3-C++.dir\Intermediaries.cpp.s
+
+CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj: CMakeFiles/Task-3-C++.dir/flags.make
+CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj: C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++\ Version/Portfolio.cpp
+CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj: CMakeFiles/Task-3-C++.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj -MF CMakeFiles\Task-3-C++.dir\Portfolio.cpp.obj.d -o CMakeFiles\Task-3-C++.dir\Portfolio.cpp.obj -c "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Portfolio.cpp"
+
+CMakeFiles/Task-3-C++.dir/Portfolio.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task-3-C++.dir/Portfolio.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Portfolio.cpp" > CMakeFiles\Task-3-C++.dir\Portfolio.cpp.i
+
+CMakeFiles/Task-3-C++.dir/Portfolio.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/Portfolio.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\Portfolio.cpp" -o CMakeFiles\Task-3-C++.dir\Portfolio.cpp.s
+
+CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj: CMakeFiles/Task-3-C++.dir/flags.make
+CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj: C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++\ Version/SaveHelper.cpp
+CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj: CMakeFiles/Task-3-C++.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj -MF CMakeFiles\Task-3-C++.dir\SaveHelper.cpp.obj.d -o CMakeFiles\Task-3-C++.dir\SaveHelper.cpp.obj -c "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\SaveHelper.cpp"
+
+CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\SaveHelper.cpp" > CMakeFiles\Task-3-C++.dir\SaveHelper.cpp.i
+
+CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\SaveHelper.cpp" -o CMakeFiles\Task-3-C++.dir\SaveHelper.cpp.s
+
 # Object files for target Task-3-C++
 Task__3__C_______OBJECTS = \
-"CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj"
+"CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj" \
+"CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj" \
+"CMakeFiles/Task-3-C++.dir/Assets.cpp.obj" \
+"CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj" \
+"CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj" \
+"CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj"
 
 # External object files for target Task-3-C++
 Task__3__C_______EXTERNAL_OBJECTS =
 
 Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
+Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj
+Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/Assets.cpp.obj
+Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj
+Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj
+Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj
 Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/build.make
 Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/linkLibs.rsp
 Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/objects1.rsp
 Task-3-C++.exe: CMakeFiles/Task-3-C++.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Task-3-C++.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Task-3-C++.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Task-3-C++.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
