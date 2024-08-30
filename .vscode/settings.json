@@ -59,5 +59,6 @@
         "variant": "cpp",
         "codecvt": "cpp",
         "ratio": "cpp"
-    }
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }

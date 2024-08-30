@@ -1,0 +1,11 @@
+oopresit\CLI.class
+oopresit\Assets.class
+oopresit\Bank.class
+oopresit\Broker.class
+oopresit\MutualFund.class
+oopresit\MutualFundManager.class
+oopresit\Stock.class
+oopresit\Intermediaries.class
+oopresit\Bond.class
+oopresit\Portfolio.class
+oopresit\Main.class
