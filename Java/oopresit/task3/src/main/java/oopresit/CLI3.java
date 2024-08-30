@@ -1,4 +1,4 @@
-package task2.java;
+package oopresit;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CLI {
+public class CLI3 {
     private static Scanner input = new Scanner(System.in);
     private static int selection = -1;
     private static ArrayList<Assets> assetsList = new ArrayList<>();
@@ -39,6 +39,7 @@ public class CLI {
 
     public static void InitMenu() {
         set_date(new Date());
+        System.out.println("Task 3 java version");
         do {
             System.out.println("\nInitialisation:");
             System.out.println("1. New Save");

@@ -1,4 +1,4 @@
-package task2.java;
+package oopresit;
 
 import java.io.Serializable;
 import java.util.Date;
