@@ -2,6 +2,42 @@
 	"entries" : 
 	[
 		{
+			"name" : "AssetViewer-C++_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset"
+		},
+		{
+			"name" : "AssetViewer-C++_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "AssetViewer-C++_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -879,7 +915,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Task-3-C++"
+			"value" : "AssetViewer-C++"
 		},
 		{
 			"name" : "CMAKE_PROJECT_VERSION",

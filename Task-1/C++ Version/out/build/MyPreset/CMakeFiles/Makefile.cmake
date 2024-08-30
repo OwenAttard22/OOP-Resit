@@ -50,5 +50,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Task-1-C++.dir/DependInfo.cmake"
-  "CMakeFiles/Task-3-C++.dir/DependInfo.cmake"
+  "CMakeFiles/AssetViewer-C++.dir/DependInfo.cmake"
   )

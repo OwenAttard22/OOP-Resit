@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C
 
 # The main recursive "all" target.
 all: CMakeFiles/Task-1-C++.dir/all
-all: CMakeFiles/Task-3-C++.dir/all
+all: CMakeFiles/AssetViewer-C++.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,7 +72,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/Task-1-C++.dir/clean
-clean: CMakeFiles/Task-3-C++.dir/clean
+clean: CMakeFiles/AssetViewer-C++.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -82,7 +82,7 @@ clean: CMakeFiles/Task-3-C++.dir/clean
 CMakeFiles/Task-1-C++.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target Task-1-C++"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=7,8,9,10,11,12,13 "Built target Task-1-C++"
 .PHONY : CMakeFiles/Task-1-C++.dir/all
 
 # Build rule for subdir invocation for target.
@@ -102,30 +102,30 @@ CMakeFiles/Task-1-C++.dir/clean:
 .PHONY : CMakeFiles/Task-1-C++.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Task-3-C++.dir
+# Target rules for target CMakeFiles/AssetViewer-C++.dir
 
 # All Build rule for target.
-CMakeFiles/Task-3-C++.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=8,9,10,11,12,13,14 "Built target Task-3-C++"
-.PHONY : CMakeFiles/Task-3-C++.dir/all
+CMakeFiles/AssetViewer-C++.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" --progress-num=1,2,3,4,5,6 "Built target AssetViewer-C++"
+.PHONY : CMakeFiles/AssetViewer-C++.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Task-3-C++.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" 7
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Task-3-C++.dir/all
+CMakeFiles/AssetViewer-C++.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/AssetViewer-C++.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\owena\OneDrive\Desktop\OOP-Resit\OOP-Resit\Task-1\C++ Version\out\build\MyPreset\CMakeFiles" 0
-.PHONY : CMakeFiles/Task-3-C++.dir/rule
+.PHONY : CMakeFiles/AssetViewer-C++.dir/rule
 
 # Convenience name for target.
-Task-3-C++: CMakeFiles/Task-3-C++.dir/rule
-.PHONY : Task-3-C++
+AssetViewer-C++: CMakeFiles/AssetViewer-C++.dir/rule
+.PHONY : AssetViewer-C++
 
 # clean rule for target.
-CMakeFiles/Task-3-C++.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/clean
-.PHONY : CMakeFiles/Task-3-C++.dir/clean
+CMakeFiles/AssetViewer-C++.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/clean
+.PHONY : CMakeFiles/AssetViewer-C++.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

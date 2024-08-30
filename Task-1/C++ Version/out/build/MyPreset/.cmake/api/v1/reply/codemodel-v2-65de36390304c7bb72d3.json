@@ -28,7 +28,7 @@
 					[
 						0
 					],
-					"name" : "Task-3-C++",
+					"name" : "AssetViewer-C++",
 					"targetIndexes" : 
 					[
 						0,
@@ -40,16 +40,16 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "Task-1-C++::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Task-1-C++-Debug-d9ad98eb914b661c5e36.json",
-					"name" : "Task-1-C++",
+					"id" : "AssetViewer-C++::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AssetViewer-C++-Debug-8f06a8a31d0d05c1bdf4.json",
+					"name" : "AssetViewer-C++",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
-					"id" : "Task-3-C++::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Task-3-C++-Debug-8e9add1eb4428b995633.json",
-					"name" : "Task-3-C++",
+					"id" : "Task-1-C++::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Task-1-C++-Debug-d9ad98eb914b661c5e36.json",
+					"name" : "Task-1-C++",
 					"projectIndex" : 0
 				}
 			]

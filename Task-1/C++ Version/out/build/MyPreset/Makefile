@@ -129,17 +129,17 @@ Task-1-C++/fast:
 .PHONY : Task-1-C++/fast
 
 #=============================================================================
-# Target rules for targets named Task-3-C++
+# Target rules for targets named AssetViewer-C++
 
 # Build rule for target.
-Task-3-C++: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Task-3-C++
-.PHONY : Task-3-C++
+AssetViewer-C++: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 AssetViewer-C++
+.PHONY : AssetViewer-C++
 
 # fast build rule for target.
-Task-3-C++/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/build
-.PHONY : Task-3-C++/fast
+AssetViewer-C++/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/build
+.PHONY : AssetViewer-C++/fast
 
 Assets.obj: Assets.cpp.obj
 .PHONY : Assets.obj
@@ -147,7 +147,7 @@ Assets.obj: Assets.cpp.obj
 # target to build an object file
 Assets.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Assets.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Assets.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Assets.cpp.obj
 .PHONY : Assets.cpp.obj
 
 Assets.i: Assets.cpp.i
@@ -156,7 +156,7 @@ Assets.i: Assets.cpp.i
 # target to preprocess a source file
 Assets.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Assets.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Assets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Assets.cpp.i
 .PHONY : Assets.cpp.i
 
 Assets.s: Assets.cpp.s
@@ -165,7 +165,7 @@ Assets.s: Assets.cpp.s
 # target to generate assembly for a file
 Assets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Assets.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Assets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Assets.cpp.s
 .PHONY : Assets.cpp.s
 
 CLI.obj: CLI.cpp.obj
@@ -192,53 +192,29 @@ CLI.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/CLI.cpp.s
 .PHONY : CLI.cpp.s
 
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.obj: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.obj
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.obj: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.obj
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.obj
 
 # target to build an object file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.obj
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.obj
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.obj
 
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.i: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.i
-
-# target to preprocess a source file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.i
-
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.s: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.s
-
-# target to generate assembly for a file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp.s
-
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj
-
-# target to build an object file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.obj
-
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.i: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.i
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.i
 
 # target to preprocess a source file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.i
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.i
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.i
 
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.s: C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.s
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.s
 
 # target to generate assembly for a file
-C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
-.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp.s
+C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.s
+.PHONY : C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp.s
 
 Intermediaries.obj: Intermediaries.cpp.obj
 .PHONY : Intermediaries.obj
@@ -246,7 +222,7 @@ Intermediaries.obj: Intermediaries.cpp.obj
 # target to build an object file
 Intermediaries.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Intermediaries.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Intermediaries.cpp.obj
 .PHONY : Intermediaries.cpp.obj
 
 Intermediaries.i: Intermediaries.cpp.i
@@ -255,7 +231,7 @@ Intermediaries.i: Intermediaries.cpp.i
 # target to preprocess a source file
 Intermediaries.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Intermediaries.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Intermediaries.cpp.i
 .PHONY : Intermediaries.cpp.i
 
 Intermediaries.s: Intermediaries.cpp.s
@@ -264,7 +240,7 @@ Intermediaries.s: Intermediaries.cpp.s
 # target to generate assembly for a file
 Intermediaries.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Intermediaries.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Intermediaries.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Intermediaries.cpp.s
 .PHONY : Intermediaries.cpp.s
 
 Portfolio.obj: Portfolio.cpp.obj
@@ -273,7 +249,7 @@ Portfolio.obj: Portfolio.cpp.obj
 # target to build an object file
 Portfolio.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Portfolio.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Portfolio.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Portfolio.cpp.obj
 .PHONY : Portfolio.cpp.obj
 
 Portfolio.i: Portfolio.cpp.i
@@ -282,7 +258,7 @@ Portfolio.i: Portfolio.cpp.i
 # target to preprocess a source file
 Portfolio.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Portfolio.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Portfolio.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Portfolio.cpp.i
 .PHONY : Portfolio.cpp.i
 
 Portfolio.s: Portfolio.cpp.s
@@ -291,7 +267,7 @@ Portfolio.s: Portfolio.cpp.s
 # target to generate assembly for a file
 Portfolio.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/Portfolio.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/Portfolio.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/Portfolio.cpp.s
 .PHONY : Portfolio.cpp.s
 
 SaveHelper.obj: SaveHelper.cpp.obj
@@ -300,7 +276,7 @@ SaveHelper.obj: SaveHelper.cpp.obj
 # target to build an object file
 SaveHelper.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/SaveHelper.cpp.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/SaveHelper.cpp.obj
 .PHONY : SaveHelper.cpp.obj
 
 SaveHelper.i: SaveHelper.cpp.i
@@ -309,7 +285,7 @@ SaveHelper.i: SaveHelper.cpp.i
 # target to preprocess a source file
 SaveHelper.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/SaveHelper.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/SaveHelper.cpp.i
 .PHONY : SaveHelper.cpp.i
 
 SaveHelper.s: SaveHelper.cpp.s
@@ -318,7 +294,7 @@ SaveHelper.s: SaveHelper.cpp.s
 # target to generate assembly for a file
 SaveHelper.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-1-C++.dir\build.make CMakeFiles/Task-1-C++.dir/SaveHelper.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Task-3-C++.dir\build.make CMakeFiles/Task-3-C++.dir/SaveHelper.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\AssetViewer-C++.dir\build.make CMakeFiles/AssetViewer-C++.dir/SaveHelper.cpp.s
 .PHONY : SaveHelper.cpp.s
 
 main.obj: main.cpp.obj
@@ -353,20 +329,17 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... AssetViewer-C++
 	@echo ... Task-1-C++
-	@echo ... Task-3-C++
 	@echo ... Assets.obj
 	@echo ... Assets.i
 	@echo ... Assets.s
 	@echo ... CLI.obj
 	@echo ... CLI.i
 	@echo ... CLI.s
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.obj
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.i
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.s
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.obj
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.i
-	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.s
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.obj
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.i
+	@echo ... C_/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.s
 	@echo ... Intermediaries.obj
 	@echo ... Intermediaries.i
 	@echo ... Intermediaries.s

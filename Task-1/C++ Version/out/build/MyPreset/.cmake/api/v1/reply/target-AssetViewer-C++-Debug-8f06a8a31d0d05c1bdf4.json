@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Task-3-C++.exe"
+			"path" : "AssetViewer-C++.exe"
 		},
 		{
-			"path" : "Task-3-C++.pdb"
+			"path" : "AssetViewer-C++.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -48,12 +48,11 @@
 				1,
 				2,
 				3,
-				4,
-				5
+				4
 			]
 		}
 	],
-	"id" : "Task-3-C++::@6890427a1f51a3e7e1df",
+	"id" : "AssetViewer-C++::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -73,8 +72,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Task-3-C++",
-	"nameOnDisk" : "Task-3-C++.exe",
+	"name" : "AssetViewer-C++",
+	"nameOnDisk" : "AssetViewer-C++.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -90,8 +89,7 @@
 				1,
 				2,
 				3,
-				4,
-				5
+				4
 			]
 		}
 	],
@@ -100,13 +98,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/main2.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/CLI2.cpp",
+			"path" : "C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-3/AssetViewer/main2.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
