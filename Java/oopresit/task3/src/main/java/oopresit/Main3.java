@@ -1,5 +1,9 @@
 package oopresit;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import oopresit.proto.TestProto;
 
 public class Main3 {
@@ -13,6 +17,21 @@ public class Main3 {
         .setResultPerPage(10)
         .build();
         System.out.println(request);
+
+        try (FileOutputStream output = new FileOutputStream("person.ser")) {
+            request.writeTo(output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileInputStream input = new FileInputStream("person.ser")) {
+            TestProto.SearchRequest derequest = TestProto.SearchRequest.parseFrom(input);
+            System.out.println(derequest.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        
     }
 }
 
