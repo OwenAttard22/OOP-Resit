@@ -11,12 +11,14 @@ abstract class HistoricalSnapshots implements Serializable {
     private final float _assetValue;
     private final String _intermediaryName;
     private final Map<Date, List<String>> _historicalSnapshots;
+    private final Date _snapshotDate;
 
-    protected HistoricalSnapshots(String assetName, float assetValue, String intermediaryName) {
+    protected HistoricalSnapshots(String assetName, float assetValue, String intermediaryName, Date snapshotDate) {
         _assetName = assetName;
         _assetValue = assetValue;
         _intermediaryName = intermediaryName;
         _historicalSnapshots = new HashMap<>();
+        _snapshotDate = snapshotDate;
     }
 
     private Map<Date, List<String>> deepCopy(Map<Date, List<String>> original) {
@@ -25,6 +27,10 @@ abstract class HistoricalSnapshots implements Serializable {
             copy.put(new Date(entry.getKey().getTime()), List.copyOf(entry.getValue()));
         }
         return copy;
+    }
+
+    public Date getSnapshotDate() {
+        return new Date(_snapshotDate.getTime());
     }
 
     String getAssetName() {
@@ -63,7 +69,7 @@ class StockSnapshot extends HistoricalSnapshots {
     private final float _commission;
 
     private StockSnapshot(Builder builder) {
-        super(builder.assetName, builder.assetValue, builder.intermediaryName);
+        super(builder.assetName, builder.assetValue, builder.intermediaryName, builder.snapshotDate);
         _ticker = builder.ticker;
         _quantity = builder.quantity;
         _yield = builder.yield;
@@ -128,6 +134,7 @@ class StockSnapshot extends HistoricalSnapshots {
         private String intermediaryName;
         private float commission;
         private Map<Date, List<String>> historicalSnapshots = new HashMap<>();
+        private Date snapshotDate;
 
         public Builder setassetName(String assetName) {
             this.assetName = assetName;
@@ -169,6 +176,11 @@ class StockSnapshot extends HistoricalSnapshots {
             return this;
         }
 
+        public Builder setsnapshotDate(Date snapshotDate) {
+            this.snapshotDate = snapshotDate;
+            return this;
+        }
+
         public StockSnapshot build() {
             return new StockSnapshot(this);
         }
@@ -181,7 +193,7 @@ class BondSnapshot extends HistoricalSnapshots {
     private final float _Intermediary_interestRate;
 
     private BondSnapshot(Builder builder) {
-        super(builder.assetName, builder.assetValue, builder.intermediaryName);
+        super(builder.assetName, builder.assetValue, builder.intermediaryName, builder.snapshotDate);
         _interestRate = builder.interestRate;
         _daysToMaturity = builder.daysToMaturity;
         _Intermediary_interestRate = builder.Intermediary_interestRate;
@@ -238,6 +250,7 @@ class BondSnapshot extends HistoricalSnapshots {
         private String intermediaryName;
         private float Intermediary_interestRate;
         private Map<Date, List<String>> historicalSnapshots = new HashMap<>();
+        private Date snapshotDate;
 
         public Builder setassetName(String assetName) {
             this.assetName = assetName;
@@ -274,6 +287,11 @@ class BondSnapshot extends HistoricalSnapshots {
             return this;
         }
 
+        public Builder setsnapshotDate(Date snapshotDate) {
+            this.snapshotDate = snapshotDate;
+            return this;
+        }
+
         public BondSnapshot build() {
             return new BondSnapshot(this);
         }
@@ -286,7 +304,7 @@ class MutualFundSnapshot extends HistoricalSnapshots {
     private final float _managementFee;
 
     private MutualFundSnapshot(Builder builder) {
-        super(builder.assetName, builder.assetValue, builder.intermediaryName);
+        super(builder.assetName, builder.assetValue, builder.intermediaryName, builder.snapshotDate);
         _expenseRatio = builder.expenseRatio;
         _employeeNumber = builder.employeeNumber;
         _managementFee = builder.managementFee;
@@ -343,6 +361,7 @@ class MutualFundSnapshot extends HistoricalSnapshots {
         private float managementFee;
         private String intermediaryName;
         private Map<Date, List<String>> historicalSnapshots = new HashMap<>();
+        private Date snapshotDate;
 
         public Builder setassetName(String assetName) {
             this.assetName = assetName;
@@ -376,6 +395,11 @@ class MutualFundSnapshot extends HistoricalSnapshots {
 
         public Builder sethistoricalSnapshots(Map<Date, List<String>> historicalSnapshots) {
             this.historicalSnapshots = historicalSnapshots;
+            return this;
+        }
+
+        public Builder setsnapshotDate(Date snapshotDate) {
+            this.snapshotDate = snapshotDate;
             return this;
         }
 

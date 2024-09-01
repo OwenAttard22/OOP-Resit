@@ -1,15 +1,7 @@
 package oopresit;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -21,9 +13,9 @@ public class CLI3 {
     private static int selection = -1;
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
-    public static final String SAVE_DIRECTORY = "Task-2/Saves/";
     private static ArrayList<HistoricalSnapshots> portfolioList = new ArrayList<>();
     private static Date _date;
+    private static Facade facade = new Facade();
 
     static Date get_date(){
         return _date;
@@ -56,7 +48,10 @@ public class CLI3 {
                         break;
                     case 2:
                         System.out.println("Load save");
-                        loadState();
+                        ArrayList<Object> loadedData = facade.load();
+                        assetsList = (ArrayList<Assets>) loadedData.get(0);
+                        intermediariesList = (ArrayList<Intermediaries>) loadedData.get(1);
+                        portfolioList = (ArrayList<HistoricalSnapshots>) loadedData.get(2);
                         MainMenu();
                         break;
                     case 3:
@@ -98,7 +93,7 @@ public class CLI3 {
                         IntermediariesMenu();
                         break;
                     case 4: // Exit and save
-                        saveState();
+                        facade.save(intermediariesList, assetsList, portfolioList);
                         System.out.println("Exiting and saving....");
                         System.exit(0);
                         break;
@@ -754,65 +749,6 @@ public static void createMutualFund() {
     
         } while (true);
     }     
-    
-    @SuppressWarnings("unchecked")
-    public static void loadState() {
-        File saveDir = new File(SAVE_DIRECTORY);
-        if (!saveDir.exists() || saveDir.listFiles().length == 0) {
-            System.out.println("No saves available.");
-            return;
-        }
-
-        File[] saves = saveDir.listFiles();
-        Arrays.sort(saves, Comparator.comparingLong(File::lastModified).reversed());
-
-        System.out.println("Available saves:");
-        for (int i = 0; i < saves.length; i++) {
-            System.out.println((i + 1) + ". " + saves[i].getName());
-        }
-
-        System.out.println("Select a save to load:");
-        try {
-            int saveSelection = input.nextInt();
-            if (saveSelection > 0 && saveSelection <= saves.length) {
-                String filename = saves[saveSelection - 1].getPath();
-                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
-                    assetsList = (ArrayList<Assets>) in.readObject();
-                    intermediariesList = (ArrayList<Intermediaries>) in.readObject();
-                    portfolioList = (ArrayList<HistoricalSnapshots>) in.readObject();
-                    System.out.println("State loaded from " + filename);
-                } catch (IOException | ClassNotFoundException e) {
-                    System.err.println("Error loading state: " + e.getMessage());
-                }
-            } else {
-                System.err.println("Invalid selection.");
-            }
-        } catch (InputMismatchException e) {
-            System.err.println("Invalid input. Please enter an integer.");
-            input.next();
-        }
-    }
-    
-    public static void saveState() {
-        try {
-            File saveDir = new File(SAVE_DIRECTORY);
-            if (!saveDir.exists()) {
-                saveDir.mkdirs();
-            }
-    
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String filename = SAVE_DIRECTORY + "state_" + timestamp + ".dat";
-    
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
-                out.writeObject(assetsList);
-                out.writeObject(intermediariesList);
-                out.writeObject(portfolioList);
-                System.out.println("State saved to " + filename);
-            }
-        } catch (IOException e) {
-            System.err.println("Error saving state: " + e.getMessage());
-        }
-    }
 
     private static void displayHistoricalListings() {
         if (portfolioList.isEmpty()) {
@@ -871,6 +807,7 @@ public static void createMutualFund() {
                         .setyield(stock.get_yield())
                         .setintermediaryName(broker.get_name())
                         .setcommission(broker.get_commission())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof Bond) {
                 Bond bond = (Bond) asset;
@@ -882,6 +819,7 @@ public static void createMutualFund() {
                         .setdaysToMaturity(bond.get_daysToMaturity())
                         .setintermediaryName(bank.get_name())
                         .setintermediaryInterestRate(bank.get_interestRate())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof MutualFund) {
                 MutualFund mutualFund = (MutualFund) asset;
@@ -893,6 +831,7 @@ public static void createMutualFund() {
                         .setemployeeNumber(manager.get_employeeNumber())
                         .setintermediaryName(manager.get_name())
                         .setmanagementFee(manager.get_managementFee())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else {
                 System.err.println("Unsupported asset type.");

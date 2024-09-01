@@ -14,10 +14,14 @@ oopresit\proto\TestProto$Broker_Proto$1.class
 oopresit\StockSnapshot$1.class
 oopresit\proto\TestProto$MutualFundManager_ProtoOrBuilder.class
 oopresit\proto\TestProto$BondSnapshot_Proto$Builder.class
+oopresit\BondSnapshot.class
 oopresit\proto\TestProto$Stock_ProtoOrBuilder.class
 oopresit\proto\TestProto$StockSnapshot_ProtoOrBuilder.class
 oopresit\proto\TestProto$BondSnapshot_Proto.class
 oopresit\proto\TestProto$HistoricalSnapshot_Proto$1.class
+oopresit\Main3.class
+oopresit\StockSnapshot$Builder.class
+oopresit\MutualFundSnapshot.class
 oopresit\proto\TestProto$Stock_Proto$Builder.class
 oopresit\MutualFundSnapshot$1.class
 oopresit\proto\TestProto$Intermediary_ProtoOrBuilder.class
@@ -45,6 +49,7 @@ oopresit\proto\TestProto$Bond_Proto$Builder.class
 oopresit\proto\TestProto$Bond_ProtoOrBuilder.class
 oopresit\proto\TestProto$Intermediaries_Proto.class
 oopresit\proto\TestProto$Intermediary_Proto$1.class
+oopresit\HistoricalSnapshots.class
 oopresit\proto\TestProto$Stock_Proto.class
 oopresit\proto\TestProto$Bank_ProtoOrBuilder.class
 oopresit\proto\TestProto$Intermediary_Proto$IntermediaryTypeCase.class
@@ -53,6 +58,8 @@ oopresit\proto\TestProto$Assets_Proto.class
 oopresit\proto\TestProto$Asset_ProtoOrBuilder.class
 oopresit\proto\TestProto$Bank_Proto$Builder.class
 oopresit\proto\TestProto$SearchRequest$Builder.class
+oopresit\Facade.class
+oopresit\MutualFundSnapshot$Builder.class
 oopresit\proto\TestProto$AssetSnapshot_Proto$Builder.class
 oopresit\proto\TestProto$HistoricalSnapshots_Proto$1.class
 oopresit\proto\TestProto$Bond_Proto.class
@@ -64,9 +71,12 @@ oopresit\proto\TestProto$HistoricalSnapshot_ProtoOrBuilder.class
 oopresit\proto\TestProto$AssetSnapshot_Proto$1.class
 oopresit\proto\TestProto$MutualFundManager_Proto.class
 oopresit\proto\TestProto$SearchRequest$1.class
+oopresit\StockSnapshot.class
+oopresit\BondSnapshot$Builder.class
 oopresit\proto\TestProto$Intermediaries_ProtoOrBuilder.class
 oopresit\proto\TestProto$Intermediaries_Proto$1.class
 oopresit\proto\TestProto$Intermediary_Proto$Builder.class
+oopresit\CLI3.class
 oopresit\proto\TestProto$HistoricalSnapshot_Proto$Builder.class
 oopresit\proto\TestProto$Bank_Proto$1.class
 oopresit\proto\TestProto$BondSnapshot_Proto$1.class

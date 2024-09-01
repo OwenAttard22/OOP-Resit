@@ -871,6 +871,7 @@ public static void createMutualFund() {
                         .setyield(stock.get_yield())
                         .setintermediaryName(broker.get_name())
                         .setcommission(broker.get_commission())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof Bond) {
                 Bond bond = (Bond) asset;
@@ -882,6 +883,7 @@ public static void createMutualFund() {
                         .setdaysToMaturity(bond.get_daysToMaturity())
                         .setintermediaryName(bank.get_name())
                         .setintermediaryInterestRate(bank.get_interestRate())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof MutualFund) {
                 MutualFund mutualFund = (MutualFund) asset;
@@ -893,6 +895,7 @@ public static void createMutualFund() {
                         .setemployeeNumber(manager.get_employeeNumber())
                         .setintermediaryName(manager.get_name())
                         .setmanagementFee(manager.get_managementFee())
+                        .setsnapshotDate(currentDate)
                         .build();
             } else {
                 System.err.println("Unsupported asset type.");
