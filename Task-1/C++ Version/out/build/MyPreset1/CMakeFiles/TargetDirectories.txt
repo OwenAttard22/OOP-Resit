@@ -1,0 +1,4 @@
+C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset1/CMakeFiles/Task-1-C++.dir
+C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset1/CMakeFiles/AssetViewer-C++.dir
+C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset1/CMakeFiles/edit_cache.dir
+C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Task-1/C++ Version/out/build/MyPreset1/CMakeFiles/rebuild_cache.dir

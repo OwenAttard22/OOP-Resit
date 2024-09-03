@@ -13,7 +13,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CLI {
@@ -817,53 +816,33 @@ public static void createMutualFund() {
     }    
 
     private static void displayHistoricalListings() {
-        if (portfolioList.isEmpty() || portfolioList.get(0).get_historicalSnapshots().isEmpty()) {
-            System.out.println("No historical data available.");
+        if (portfolioList.isEmpty()) {
+            System.out.println("No portfolios available.");
             return;
         }
-
+    
         System.out.println("Choose sort order: 1 for Ascending, 2 for Descending");
         int sortOrder = input.nextInt();
-        
-        Map<Date, ArrayList<String>> snapshots = portfolioList.get(0).get_historicalSnapshots();
-        List<Date> sortedDates = new ArrayList<>(snapshots.keySet());
-
-        if (sortOrder == 2) {
-            sortedDates.sort(Comparator.reverseOrder());
-        } else {
-            sortedDates.sort(Comparator.naturalOrder());
-        }
-
-        for (Date date : sortedDates) {
-            System.out.println("\nSnapshot on " + date);
-            List<String> details = snapshots.get(date);
-            for (String detail : details) {
-                System.out.println(detail);
-            }
-        }
+    
+        Portfolio portfolio = portfolioList.get(0);
+        portfolio.displayHistoricalListings(sortOrder);
     }
-
 
     private static void recordSnapshot() {
         Date date = get_date();
         increment_date();
-        ArrayList<String> snapshotDetails = new ArrayList<>();
-    
-        for (Assets asset : assetsList) {
-            Intermediaries intermediary = asset.get_intermediary();
-            snapshotDetails.add(asset.displayAsset() + " || " + (intermediary != null ? intermediary.displayIntermediary() : "No Intermediary"));
-        }
     
         if (!portfolioList.isEmpty()) {
-            portfolioList.get(0).get_historicalSnapshots().put(date, snapshotDetails);
+            Portfolio portfolio = portfolioList.get(0);
+            portfolio.recordSnapshot(date);
+            System.out.println("Snapshot recorded on " + date);
         } else {
-            Portfolio newPortfolio = new Portfolio(new ArrayList<>());
-            newPortfolio.get_historicalSnapshots().put(date, snapshotDetails);
+            Portfolio newPortfolio = new Portfolio(assetsList);
+            newPortfolio.recordSnapshot(date);
             portfolioList.add(newPortfolio);
+            System.out.println("Snapshot recorded and new portfolio created on " + date);
         }
-    
-        System.out.println("Snapshot recorded on " + date);
-    }
+    }    
 
     private static void annualReturn() {
         if (assetsList.isEmpty()) {

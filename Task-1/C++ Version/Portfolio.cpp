@@ -1,5 +1,6 @@
 #include "Portfolio.h"
 #include "SaveHelper.h"
+#include <algorithm>
 
 Portfolio::Portfolio(const std::vector<Assets*>& assetsList) {
     set_assetsList(assetsList);
@@ -32,20 +33,28 @@ void Portfolio::recordSnapshot(std::time_t date) {
     _historicalSnapshots[date] = snapshot;
 }
 
-void Portfolio::displayHistoricalListings(std::time_t startDate, std::time_t endDate) const {
-    bool found = false;
-    for (const auto& entry : _historicalSnapshots) {
-        std::time_t date = entry.first;
-        if (date >= startDate && date <= endDate) {
-            found = true;
-            std::cout << "Snapshot for date: " << std::ctime(&date);
-            for (const auto& snapshotEntry : entry.second) {
-                std::cout << snapshotEntry << std::endl;
-            }
-        }
+void Portfolio::displayHistoricalListings(int sortOrder) const {
+    if (_historicalSnapshots.empty()) {
+        std::cout << "No historical data available.\n";
+        return;
     }
-    if (!found) {
-        std::cout << "No snapshots found within the specified date range.\n";
+
+    std::vector<std::time_t> sortedDates;
+    for (const auto& snapshot : _historicalSnapshots) {
+        sortedDates.push_back(snapshot.first);
+    }
+
+    if (sortOrder == 2) {
+        std::sort(sortedDates.rbegin(), sortedDates.rend());
+    } else {
+        std::sort(sortedDates.begin(), sortedDates.end());
+    }
+
+    for (auto date : sortedDates) {
+        std::cout << "\nSnapshot on " << std::ctime(&date);
+        for (const auto& detail : _historicalSnapshots.at(date)) {
+            std::cout << detail << "\n";
+        }
     }
 }
 

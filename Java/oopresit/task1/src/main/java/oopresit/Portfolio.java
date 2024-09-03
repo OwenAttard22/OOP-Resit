@@ -2,8 +2,10 @@ package oopresit;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Portfolio implements Serializable {
@@ -32,23 +34,32 @@ public class Portfolio implements Serializable {
         
         for (Assets asset : _assetsList) {
             Intermediaries intermediary = asset.get_intermediary();
-            
             String snapshotEntry = asset.displayAsset() + " || " + intermediary.displayIntermediary();
-            
             snapshot.add(snapshotEntry);
         }
         
         _historicalSnapshots.put(date, snapshot);
     }
 
-    public void displayHistoricalListings(Date startDate, Date endDate) {
-        for (Map.Entry<Date, ArrayList<String>> entry : _historicalSnapshots.entrySet()) {
-            Date date = entry.getKey();
-            if (!date.before(startDate) && !date.after(endDate)) {
-                System.out.println("Snapshot for date: " + date);
-                for (String snapshotEntry : entry.getValue()) {
-                    System.out.println(snapshotEntry);
-                }
+    public void displayHistoricalListings(int sortOrder) {
+        if (_historicalSnapshots.isEmpty()) {
+            System.out.println("No historical data available.");
+            return;
+        }
+
+        List<Date> sortedDates = new ArrayList<>(_historicalSnapshots.keySet());
+
+        if (sortOrder == 2) {
+            sortedDates.sort(Comparator.reverseOrder());
+        } else {
+            sortedDates.sort(Comparator.naturalOrder());
+        }
+
+        for (Date date : sortedDates) {
+            System.out.println("\nSnapshot on " + date);
+            List<String> details = _historicalSnapshots.get(date);
+            for (String detail : details) {
+                System.out.println(detail);
             }
         }
     }

@@ -705,14 +705,15 @@ void CLI::recordSnapshot() {
     increment_date();
 
     if (!portfolioList.empty()) {
-        portfolioList[0]->recordSnapshot(date);
+        Portfolio* portfolio = portfolioList[0];
+        portfolio->recordSnapshot(date);
+        std::cout << "Snapshot recorded on " << std::ctime(&date);
     } else {
         Portfolio* newPortfolio = new Portfolio(assetsList);
         newPortfolio->recordSnapshot(date);
         portfolioList.push_back(newPortfolio);
+        std::cout << "Snapshot recorded and new portfolio created on " << std::ctime(&date);
     }
-
-    std::cout << "Snapshot recorded on " << std::ctime(&date);
 }
 
 void CLI::displayHistoricalListings() {
@@ -725,25 +726,8 @@ void CLI::displayHistoricalListings() {
     int sortOrder;
     std::cin >> sortOrder;
 
-    auto snapshots = portfolioList[0]->get_historicalSnapshots();
-    std::vector<std::time_t> sortedDates;
-
-    for (const auto& snapshot : snapshots) {
-        sortedDates.push_back(snapshot.first);
-    }
-
-    if (sortOrder == 2) {
-        std::sort(sortedDates.rbegin(), sortedDates.rend());
-    } else {
-        std::sort(sortedDates.begin(), sortedDates.end());
-    }
-
-    for (auto date : sortedDates) {
-        std::cout << "\nSnapshot on " << std::ctime(&date);
-        for (const auto& detail : snapshots[date]) {
-            std::cout << detail << "\n";
-        }
-    }
+    Portfolio* portfolio = portfolioList[0];
+    portfolio->displayHistoricalListings(sortOrder);
 }
 
 void CLI::loadState() {

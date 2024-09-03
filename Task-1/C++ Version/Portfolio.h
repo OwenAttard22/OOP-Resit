@@ -24,7 +24,7 @@ public:
     std::map<std::time_t, std::vector<std::string>> get_historicalSnapshots() const;
 
     void recordSnapshot(std::time_t date);
-    void displayHistoricalListings(std::time_t startDate, std::time_t endDate) const;
+    void displayHistoricalListings(int sortOrder) const;
 
     void serialize(std::ofstream& ofs) const;
     void deserialize(std::ifstream& ifs, const std::vector<Assets*>& allAssets);

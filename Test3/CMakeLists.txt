@@ -1,0 +1,121 @@
+cmake_minimum_required(VERSION 3.10)
+project(MyProtobufProject)
+
+# Specify Protobuf paths
+set(Protobuf_INCLUDE_DIR "C:/Program Files (x86)/protobuf/include")
+set(Protobuf_LIBRARIES "C:/Program Files (x86)/protobuf/lib/libprotobuf.a")
+
+# Specify Abseil paths
+set(ABSL_INCLUDE_DIR "C:/path_to_abseil_include_directory")
+set(ABSL_LIBRARIES
+    "C:/lib/libabsl_bad_any_cast_impl.a"
+    "C:/lib/libabsl_bad_optional_access.a"
+    "C:/lib/libabsl_bad_variant_access.a"
+    "C:/lib/libabsl_base.a"
+    "C:/lib/libabsl_city.a"
+    "C:/lib/libabsl_civil_time.a"
+    "C:/lib/libabsl_cord.a"
+    "C:/lib/libabsl_cord_internal.a"
+    "C:/lib/libabsl_cordz_functions.a"
+    "C:/lib/libabsl_cordz_handle.a"
+    "C:/lib/libabsl_cordz_info.a"
+    "C:/lib/libabsl_cordz_sample_token.a"
+    "C:/lib/libabsl_crc_cord_state.a"
+    "C:/lib/libabsl_crc_cpu_detect.a"
+    "C:/lib/libabsl_crc_internal.a"
+    "C:/lib/libabsl_crc32c.a"
+    "C:/lib/libabsl_debugging_internal.a"
+    "C:/lib/libabsl_decode_rust_punycode.a"
+    "C:/lib/libabsl_demangle_internal.a"
+    "C:/lib/libabsl_demangle_rust.a"
+    "C:/lib/libabsl_die_if_null.a"
+    "C:/lib/libabsl_examine_stack.a"
+    "C:/lib/libabsl_exponential_biased.a"
+    "C:/lib/libabsl_failure_signal_handler.a"
+    "C:/lib/libabsl_flags_commandlineflag.a"
+    "C:/lib/libabsl_flags_commandlineflag_internal.a"
+    "C:/lib/libabsl_flags_config.a"
+    "C:/lib/libabsl_flags_internal.a"
+    "C:/lib/libabsl_flags_marshalling.a"
+    "C:/lib/libabsl_flags_parse.a"
+    "C:/lib/libabsl_flags_private_handle_accessor.a"
+    "C:/lib/libabsl_flags_program_name.a"
+    "C:/lib/libabsl_flags_reflection.a"
+    "C:/lib/libabsl_flags_usage.a"
+    "C:/lib/libabsl_flags_usage_internal.a"
+    "C:/lib/libabsl_graphcycles_internal.a"
+    "C:/lib/libabsl_hash.a"
+    "C:/lib/libabsl_hashtablez_sampler.a"
+    "C:/lib/libabsl_int128.a"
+    "C:/lib/libabsl_kernel_timeout_internal.a"
+    "C:/lib/libabsl_leak_check.a"
+    "C:/lib/libabsl_log_entry.a"
+    "C:/lib/libabsl_log_flags.a"
+    "C:/lib/libabsl_log_globals.a"
+    "C:/lib/libabsl_log_initialize.a"
+    "C:/lib/libabsl_log_internal_check_op.a"
+    "C:/lib/libabsl_log_internal_conditions.a"
+    "C:/lib/libabsl_log_internal_fnmatch.a"
+    "C:/lib/libabsl_log_internal_format.a"
+    "C:/lib/libabsl_log_internal_globals.a"
+    "C:/lib/libabsl_log_internal_log_sink_set.a"
+    "C:/lib/libabsl_log_internal_message.a"
+    "C:/lib/libabsl_log_internal_nullguard.a"
+    "C:/lib/libabsl_log_internal_proto.a"
+    "C:/lib/libabsl_log_severity.a"
+    "C:/lib/libabsl_log_sink.a"
+    "C:/lib/libabsl_low_level_hash.a"
+    "C:/lib/libabsl_malloc_internal.a"
+    "C:/lib/libabsl_periodic_sampler.a"
+    "C:/lib/libabsl_poison.a"
+    "C:/lib/libabsl_random_distributions.a"
+    "C:/lib/libabsl_random_internal_distribution_test_util.a"
+    "C:/lib/libabsl_random_internal_platform.a"
+    "C:/lib/libabsl_random_internal_pool_urbg.a"
+    "C:/lib/libabsl_random_internal_randen.a"
+    "C:/lib/libabsl_random_internal_randen_hwaes.a"
+    "C:/lib/libabsl_random_internal_randen_hwaes_impl.a"
+    "C:/lib/libabsl_random_internal_randen_slow.a"
+    "C:/lib/libabsl_random_internal_seed_material.a"    
+    "C:/lib/libabsl_random_seed_gen_exception.a"
+    "C:/lib/libabsl_random_seed_sequences.a"
+    "C:/lib/libabsl_raw_hash_set.a"
+    "C:/lib/libabsl_raw_logging_internal.a"
+    "C:/lib/libabsl_scoped_set_env.a"
+    "C:/lib/libabsl_spinlock_wait.a"
+    "C:/lib/libabsl_stacktrace.a"
+    "C:/lib/libabsl_status.a"
+    "C:/lib/libabsl_statusor.a"
+    "C:/lib/libabsl_str_format_internal.a"
+    "C:/lib/libabsl_strerror.a"
+    "C:/lib/libabsl_string_view.a"
+    "C:/lib/libabsl_strings.a"
+    "C:/lib/libabsl_strings_internal.a"
+    "C:/lib/libabsl_symbolize.a"
+    "C:/lib/libabsl_synchronization.a"
+    "C:/lib/libabsl_throw_delegate.a"
+    "C:/lib/libabsl_time.a"
+    "C:/lib/libabsl_time_zone.a"
+    "C:/lib/libabsl_tracing_internal.a"
+    "C:/lib/libabsl_utf8_for_code_point.a"
+    "C:/lib/libabsl_vlog_config_internal.a"
+)
+
+# Include the Protobuf and Abseil headers
+include_directories(${Protobuf_INCLUDE_DIR} ${ABSL_INCLUDE_DIR})
+
+# Include the build directory to find generated headers
+include_directories(${CMAKE_BINARY_DIR})
+
+# Find Protobuf package (required to generate .pb.h and .pb.cc files)
+find_package(Protobuf REQUIRED)
+
+# Specify the .proto files and generate C++ sources
+set(PROTO_FILES protos/message.proto)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_FILES})
+
+# Add the executable target
+add_executable(MyProtobufProject main.cpp ${PROTO_SRCS} ${PROTO_HDRS})
+
+# Link the Protobuf and Abseil libraries
+target_link_libraries(MyProtobufProject ${Protobuf_LIBRARIES} ${ABSL_LIBRARIES})
