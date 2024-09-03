@@ -5,8 +5,8 @@ oopresit\BondSnapshot.class
 oopresit\MutualFundSnapshot$1.class
 oopresit\StockSnapshot.class
 oopresit\BondSnapshot$Builder.class
+oopresit\HistoricalSnapshots2.class
 oopresit\MutualFundSnapshot$Builder.class
 oopresit\BondSnapshot$1.class
 oopresit\Main2.class
 oopresit\CLI2.class
-oopresit\HistoricalSnapshots.class

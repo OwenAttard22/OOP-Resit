@@ -22,7 +22,7 @@ public class CLI2 {
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
     public static final String SAVE_DIRECTORY = "Task-2/Saves/";
-    private static ArrayList<HistoricalSnapshots> portfolioList = new ArrayList<>();
+    private static ArrayList<HistoricalSnapshots2> portfolioList = new ArrayList<>();
     private static Date _date;
 
     static Date get_date(){
@@ -779,7 +779,7 @@ public static void createMutualFund() {
                 try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
                     assetsList = (ArrayList<Assets>) in.readObject();
                     intermediariesList = (ArrayList<Intermediaries>) in.readObject();
-                    portfolioList = (ArrayList<HistoricalSnapshots>) in.readObject();
+                    portfolioList = (ArrayList<HistoricalSnapshots2>) in.readObject();
                     System.out.println("State loaded from " + filename);
                 } catch (IOException | ClassNotFoundException e) {
                     System.err.println("Error loading state: " + e.getMessage());
@@ -837,7 +837,7 @@ public static void createMutualFund() {
     
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
-        for (HistoricalSnapshots snapshot : portfolioList) {
+        for (HistoricalSnapshots2 snapshot : portfolioList) {
             Map<Date, List<String>> historicalData = snapshot.getHistoricalSnapshots();
     
             for (Date date : historicalData.keySet()) {
@@ -858,7 +858,7 @@ public static void createMutualFund() {
         increment_date();
     
         for (Assets asset : assetsList) {
-            HistoricalSnapshots snapshot = null;
+            HistoricalSnapshots2 snapshot = null;
     
             if (asset instanceof Stock) {
                 Stock stock = (Stock) asset;
@@ -903,7 +903,7 @@ public static void createMutualFund() {
             }
     
             if (snapshot != null) {
-                snapshot = snapshot.recordSnapshot(currentDate);
+                snapshot = snapshot.withNewSnapshot(currentDate);  // Create a new instance with the new snapshot
                 portfolioList.add(snapshot);
                 System.out.println("Snapshot recorded: " + snapshot.displaySnapshot());
             }
@@ -911,7 +911,7 @@ public static void createMutualFund() {
     
         System.out.println("Snapshot recorded on " + currentDate);
         System.out.println("Current portfolio list size: " + portfolioList.size());
-    }                    
+    }
 
     private static void annualReturn() {
         if (assetsList.isEmpty()) {
