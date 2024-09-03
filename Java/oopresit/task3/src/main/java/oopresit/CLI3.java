@@ -3,17 +3,18 @@ package oopresit;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
+
 
 public class CLI3 {
     private static Scanner input = new Scanner(System.in);
     private static int selection = -1;
     private static ArrayList<Assets> assetsList = new ArrayList<>();
     private static ArrayList<Intermediaries> intermediariesList = new ArrayList<>();
-    private static ArrayList<HistoricalSnapshots> portfolioList = new ArrayList<>();
+    private static ArrayList<HistoricalSnapshots2> portfolioList = new ArrayList<>();
     private static Date _date;
     private static Facade facade = new Facade();
 
@@ -51,7 +52,7 @@ public class CLI3 {
                         ArrayList<Object> loadedData = facade.load();
                         assetsList = (ArrayList<Assets>) loadedData.get(0);
                         intermediariesList = (ArrayList<Intermediaries>) loadedData.get(1);
-                        portfolioList = (ArrayList<HistoricalSnapshots>) loadedData.get(2);
+                        portfolioList = (ArrayList<HistoricalSnapshots2>) loadedData.get(2);
                         MainMenu();
                         break;
                     case 3:
@@ -760,8 +761,8 @@ public static void createMutualFund() {
         int sortOrder = input.nextInt();
     
         portfolioList.sort((snapshot1, snapshot2) -> {
-            Date date1 = snapshot1.getHistoricalSnapshots().keySet().stream().findFirst().orElse(null);
-            Date date2 = snapshot2.getHistoricalSnapshots().keySet().stream().findFirst().orElse(null);
+            Date date1 = snapshot1.getSnapshotDate();
+            Date date2 = snapshot2.getSnapshotDate();
     
             if (date1 == null || date2 == null) {
                 System.err.println("Error: Snapshot date is null.");
@@ -773,81 +774,76 @@ public static void createMutualFund() {
     
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
-        for (HistoricalSnapshots snapshot : portfolioList) {
-            Map<Date, List<String>> historicalData = snapshot.getHistoricalSnapshots();
-    
-            for (Date date : historicalData.keySet()) {
-                System.out.println("\nSnapshot recorded on " + dateFormat.format(date) + ":");
-                System.out.println(snapshot.displaySnapshot());
-            }
+        for (HistoricalSnapshots2 snapshot : portfolioList) {
+            System.out.println("Snapshot recorded on " + dateFormat.format(snapshot.getSnapshotDate()) + ":");
+            System.out.println(snapshot.displaySnapshot());
         }
     }    
-           
 
     private static void recordSnapshot() {
         if (assetsList.isEmpty()) {
             System.out.println("No assets available to record a snapshot.");
             return;
         }
-    
+
         Date currentDate = get_date();
         increment_date();
-    
+
         for (Assets asset : assetsList) {
-            HistoricalSnapshots snapshot = null;
-    
+            HistoricalSnapshots2 snapshot = null;
+
             if (asset instanceof Stock) {
                 Stock stock = (Stock) asset;
-                Broker broker = (Broker) stock.get_intermediary();
                 snapshot = new StockSnapshot.Builder()
                         .setassetName(stock.get_name())
                         .setassetValue(stock.get_value())
                         .setticker(stock.get_ticker())
                         .setquantity(stock.get_quantity())
                         .setyield(stock.get_yield())
-                        .setintermediaryName(broker.get_name())
-                        .setcommission(broker.get_commission())
+                        .setintermediaryName(stock.get_intermediary().get_name())
+                        .setcommission(((Broker) stock.get_intermediary()).get_commission())
+                        .sethistoricalSnapshots(new HashMap<>()) // Assuming no previous snapshots
                         .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof Bond) {
                 Bond bond = (Bond) asset;
-                Bank bank = (Bank) bond.get_intermediary();
                 snapshot = new BondSnapshot.Builder()
                         .setassetName(bond.get_name())
                         .setassetValue(bond.get_value())
                         .setinterestRate(bond.get_interestRate())
                         .setdaysToMaturity(bond.get_daysToMaturity())
-                        .setintermediaryName(bank.get_name())
-                        .setintermediaryInterestRate(bank.get_interestRate())
+                        .setintermediaryName(bond.get_intermediary().get_name())
+                        .setintermediaryInterestRate(((Bank) bond.get_intermediary()).get_interestRate())
+                        .sethistoricalSnapshots(new HashMap<>())
                         .setsnapshotDate(currentDate)
                         .build();
             } else if (asset instanceof MutualFund) {
                 MutualFund mutualFund = (MutualFund) asset;
-                MutualFundManager manager = (MutualFundManager) mutualFund.get_intermediary();
                 snapshot = new MutualFundSnapshot.Builder()
                         .setassetName(mutualFund.get_name())
                         .setassetValue(mutualFund.get_value())
                         .setexpenseRatio(mutualFund.get_expenseRatio())
-                        .setemployeeNumber(manager.get_employeeNumber())
-                        .setintermediaryName(manager.get_name())
-                        .setmanagementFee(manager.get_managementFee())
+                        .setemployeeNumber(((MutualFundManager) mutualFund.get_intermediary()).get_employeeNumber())
+                        .setintermediaryName(mutualFund.get_intermediary().get_name())
+                        .setmanagementFee(((MutualFundManager) mutualFund.get_intermediary()).get_managementFee())
+                        .sethistoricalSnapshots(new HashMap<>())
                         .setsnapshotDate(currentDate)
                         .build();
             } else {
                 System.err.println("Unsupported asset type.");
                 continue;
             }
-    
+
             if (snapshot != null) {
-                snapshot = snapshot.recordSnapshot(currentDate);
+                snapshot = snapshot.withNewSnapshot(currentDate);
                 portfolioList.add(snapshot);
                 System.out.println("Snapshot recorded: " + snapshot.displaySnapshot());
             }
         }
-    
+
         System.out.println("Snapshot recorded on " + currentDate);
         System.out.println("Current portfolio list size: " + portfolioList.size());
-    }                    
+    }       
 
     private static void annualReturn() {
         if (assetsList.isEmpty()) {
