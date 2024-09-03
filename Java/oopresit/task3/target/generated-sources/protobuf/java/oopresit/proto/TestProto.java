@@ -25,660 +25,6 @@ public final class TestProto {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface SearchRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:proto.SearchRequest)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string query = 1;</code>
-     * @return The query.
-     */
-    java.lang.String getQuery();
-    /**
-     * <code>string query = 1;</code>
-     * @return The bytes for query.
-     */
-    com.google.protobuf.ByteString
-        getQueryBytes();
-
-    /**
-     * <code>int32 page_number = 2;</code>
-     * @return The pageNumber.
-     */
-    int getPageNumber();
-
-    /**
-     * <code>int32 result_per_page = 3;</code>
-     * @return The resultPerPage.
-     */
-    int getResultPerPage();
-  }
-  /**
-   * Protobuf type {@code proto.SearchRequest}
-   */
-  public static final class SearchRequest extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:proto.SearchRequest)
-      SearchRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-    static {
-      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
-        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
-        /* major= */ 4,
-        /* minor= */ 27,
-        /* patch= */ 0,
-        /* suffix= */ "",
-        SearchRequest.class.getName());
-    }
-    // Use SearchRequest.newBuilder() to construct.
-    private SearchRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-    }
-    private SearchRequest() {
-      query_ = "";
-    }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return oopresit.proto.TestProto.internal_static_proto_SearchRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return oopresit.proto.TestProto.internal_static_proto_SearchRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              oopresit.proto.TestProto.SearchRequest.class, oopresit.proto.TestProto.SearchRequest.Builder.class);
-    }
-
-    public static final int QUERY_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object query_ = "";
-    /**
-     * <code>string query = 1;</code>
-     * @return The query.
-     */
-    @java.lang.Override
-    public java.lang.String getQuery() {
-      java.lang.Object ref = query_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        query_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string query = 1;</code>
-     * @return The bytes for query.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getQueryBytes() {
-      java.lang.Object ref = query_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        query_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PAGE_NUMBER_FIELD_NUMBER = 2;
-    private int pageNumber_ = 0;
-    /**
-     * <code>int32 page_number = 2;</code>
-     * @return The pageNumber.
-     */
-    @java.lang.Override
-    public int getPageNumber() {
-      return pageNumber_;
-    }
-
-    public static final int RESULT_PER_PAGE_FIELD_NUMBER = 3;
-    private int resultPerPage_ = 0;
-    /**
-     * <code>int32 result_per_page = 3;</code>
-     * @return The resultPerPage.
-     */
-    @java.lang.Override
-    public int getResultPerPage() {
-      return resultPerPage_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(query_)) {
-        com.google.protobuf.GeneratedMessage.writeString(output, 1, query_);
-      }
-      if (pageNumber_ != 0) {
-        output.writeInt32(2, pageNumber_);
-      }
-      if (resultPerPage_ != 0) {
-        output.writeInt32(3, resultPerPage_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(query_)) {
-        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, query_);
-      }
-      if (pageNumber_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, pageNumber_);
-      }
-      if (resultPerPage_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, resultPerPage_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof oopresit.proto.TestProto.SearchRequest)) {
-        return super.equals(obj);
-      }
-      oopresit.proto.TestProto.SearchRequest other = (oopresit.proto.TestProto.SearchRequest) obj;
-
-      if (!getQuery()
-          .equals(other.getQuery())) return false;
-      if (getPageNumber()
-          != other.getPageNumber()) return false;
-      if (getResultPerPage()
-          != other.getResultPerPage()) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + QUERY_FIELD_NUMBER;
-      hash = (53 * hash) + getQuery().hashCode();
-      hash = (37 * hash) + PAGE_NUMBER_FIELD_NUMBER;
-      hash = (53 * hash) + getPageNumber();
-      hash = (37 * hash) + RESULT_PER_PAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getResultPerPage();
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static oopresit.proto.TestProto.SearchRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static oopresit.proto.TestProto.SearchRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input);
-    }
-    public static oopresit.proto.TestProto.SearchRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessage
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(oopresit.proto.TestProto.SearchRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code proto.SearchRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:proto.SearchRequest)
-        oopresit.proto.TestProto.SearchRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return oopresit.proto.TestProto.internal_static_proto_SearchRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return oopresit.proto.TestProto.internal_static_proto_SearchRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                oopresit.proto.TestProto.SearchRequest.class, oopresit.proto.TestProto.SearchRequest.Builder.class);
-      }
-
-      // Construct using oopresit.proto.TestProto.SearchRequest.newBuilder()
-      private Builder() {
-
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        bitField0_ = 0;
-        query_ = "";
-        pageNumber_ = 0;
-        resultPerPage_ = 0;
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return oopresit.proto.TestProto.internal_static_proto_SearchRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public oopresit.proto.TestProto.SearchRequest getDefaultInstanceForType() {
-        return oopresit.proto.TestProto.SearchRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public oopresit.proto.TestProto.SearchRequest build() {
-        oopresit.proto.TestProto.SearchRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public oopresit.proto.TestProto.SearchRequest buildPartial() {
-        oopresit.proto.TestProto.SearchRequest result = new oopresit.proto.TestProto.SearchRequest(this);
-        if (bitField0_ != 0) { buildPartial0(result); }
-        onBuilt();
-        return result;
-      }
-
-      private void buildPartial0(oopresit.proto.TestProto.SearchRequest result) {
-        int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.query_ = query_;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.pageNumber_ = pageNumber_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.resultPerPage_ = resultPerPage_;
-        }
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof oopresit.proto.TestProto.SearchRequest) {
-          return mergeFrom((oopresit.proto.TestProto.SearchRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(oopresit.proto.TestProto.SearchRequest other) {
-        if (other == oopresit.proto.TestProto.SearchRequest.getDefaultInstance()) return this;
-        if (!other.getQuery().isEmpty()) {
-          query_ = other.query_;
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
-        if (other.getPageNumber() != 0) {
-          setPageNumber(other.getPageNumber());
-        }
-        if (other.getResultPerPage() != 0) {
-          setResultPerPage(other.getResultPerPage());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                query_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000001;
-                break;
-              } // case 10
-              case 16: {
-                pageNumber_ = input.readInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 16
-              case 24: {
-                resultPerPage_ = input.readInt32();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 24
-              default: {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                  done = true; // was an endgroup tag
-                }
-                break;
-              } // default:
-            } // switch (tag)
-          } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.unwrapIOException();
-        } finally {
-          onChanged();
-        } // finally
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object query_ = "";
-      /**
-       * <code>string query = 1;</code>
-       * @return The query.
-       */
-      public java.lang.String getQuery() {
-        java.lang.Object ref = query_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          query_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string query = 1;</code>
-       * @return The bytes for query.
-       */
-      public com.google.protobuf.ByteString
-          getQueryBytes() {
-        java.lang.Object ref = query_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          query_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string query = 1;</code>
-       * @param value The query to set.
-       * @return This builder for chaining.
-       */
-      public Builder setQuery(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        query_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string query = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearQuery() {
-        query_ = getDefaultInstance().getQuery();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string query = 1;</code>
-       * @param value The bytes for query to set.
-       * @return This builder for chaining.
-       */
-      public Builder setQueryBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        query_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
-      private int pageNumber_ ;
-      /**
-       * <code>int32 page_number = 2;</code>
-       * @return The pageNumber.
-       */
-      @java.lang.Override
-      public int getPageNumber() {
-        return pageNumber_;
-      }
-      /**
-       * <code>int32 page_number = 2;</code>
-       * @param value The pageNumber to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPageNumber(int value) {
-
-        pageNumber_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 page_number = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPageNumber() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        pageNumber_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int resultPerPage_ ;
-      /**
-       * <code>int32 result_per_page = 3;</code>
-       * @return The resultPerPage.
-       */
-      @java.lang.Override
-      public int getResultPerPage() {
-        return resultPerPage_;
-      }
-      /**
-       * <code>int32 result_per_page = 3;</code>
-       * @param value The resultPerPage to set.
-       * @return This builder for chaining.
-       */
-      public Builder setResultPerPage(int value) {
-
-        resultPerPage_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 result_per_page = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearResultPerPage() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        resultPerPage_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:proto.SearchRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:proto.SearchRequest)
-    private static final oopresit.proto.TestProto.SearchRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new oopresit.proto.TestProto.SearchRequest();
-    }
-
-    public static oopresit.proto.TestProto.SearchRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SearchRequest>
-        PARSER = new com.google.protobuf.AbstractParser<SearchRequest>() {
-      @java.lang.Override
-      public SearchRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        Builder builder = newBuilder();
-        try {
-          builder.mergeFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(builder.buildPartial());
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(builder.buildPartial());
-        }
-        return builder.buildPartial();
-      }
-    };
-
-    public static com.google.protobuf.Parser<SearchRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SearchRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public oopresit.proto.TestProto.SearchRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface Intermediaries_ProtoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:proto.Intermediaries_Proto)
       com.google.protobuf.MessageOrBuilder {
@@ -13891,11 +13237,6 @@ public final class TestProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_SearchRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_proto_SearchRequest_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_Intermediaries_Proto_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -13985,170 +13326,162 @@ public final class TestProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\nTest.proto\022\005proto\032\037google/protobuf/tim" +
-      "estamp.proto\"L\n\rSearchRequest\022\r\n\005query\030\001" +
-      " \001(\t\022\023\n\013page_number\030\002 \001(\005\022\027\n\017result_per_" +
-      "page\030\003 \001(\005\"I\n\024Intermediaries_Proto\0221\n\016in" +
-      "termediaries\030\001 \003(\0132\031.proto.Intermediary_" +
-      "Proto\"\315\001\n\022Intermediary_Proto\022\031\n\021intermed" +
-      "iary_name\030\001 \001(\t\022%\n\006broker\030\002 \001(\0132\023.proto." +
-      "Broker_ProtoH\000\022!\n\004bank\030\003 \001(\0132\021.proto.Ban" +
-      "k_ProtoH\000\022=\n\023mutual_fund_manager\030\004 \001(\0132\036" +
-      ".proto.MutualFundManager_ProtoH\000B\023\n\021inte" +
-      "rmediary_type\")\n\014Broker_Proto\022\031\n\021broker_" +
-      "commission\030\001 \001(\002\"\'\n\nBank_Proto\022\031\n\021bank_i" +
-      "nterestRate\030\001 \001(\002\"m\n\027MutualFundManager_P" +
-      "roto\022(\n mutualfundmanager_employeenumber" +
-      "\030\001 \001(\t\022(\n mututalfundmanager_managementf" +
-      "ee\030\002 \001(\002\"2\n\014Assets_Proto\022\"\n\006assets\030\001 \003(\013" +
-      "2\022.proto.Asset_Proto\"\355\001\n\013Asset_Proto\022\022\n\n" +
-      "asset_name\030\001 \001(\t\022\023\n\013asset_value\030\002 \001(\002\022/\n" +
-      "\014intermediary\030\003 \001(\0132\031.proto.Intermediary" +
-      "_Proto\022#\n\005stock\030\004 \001(\0132\022.proto.Stock_Prot" +
-      "oH\000\022!\n\004bond\030\005 \001(\0132\021.proto.Bond_ProtoH\000\022." +
-      "\n\013mutual_fund\030\006 \001(\0132\027.proto.MutualFund_P" +
-      "rotoH\000B\014\n\nasset_type\"P\n\013Stock_Proto\022\024\n\014s" +
-      "tock_ticker\030\001 \001(\t\022\026\n\016stock_quantity\030\002 \001(" +
-      "\002\022\023\n\013stock_yield\030\003 \001(\002\"D\n\nBond_Proto\022\031\n\021" +
-      "bond_interestrate\030\001 \001(\002\022\033\n\023bond_daystoma" +
-      "turity\030\002 \001(\005\"3\n\020MutualFund_Proto\022\037\n\027mutu" +
-      "alfund_expenseratio\030\001 \001(\002\"Z\n\031HistoricalS" +
-      "napshots_Proto\022=\n\024historical_snapshots\030\001" +
-      " \003(\0132\037.proto.HistoricalSnapshot_Proto\"y\n" +
-      "\030HistoricalSnapshot_Proto\022(\n\004date\030\001 \001(\0132" +
-      "\032.google.protobuf.Timestamp\0223\n\017asset_sna" +
-      "pshots\030\002 \003(\0132\032.proto.AssetSnapshot_Proto" +
-      "\"\322\001\n\023AssetSnapshot_Proto\0224\n\016stock_snapsh" +
-      "ot\030\001 \001(\0132\032.proto.StockSnapshot_ProtoH\000\0222" +
-      "\n\rbond_snapshot\030\002 \001(\0132\031.proto.BondSnapsh" +
-      "ot_ProtoH\000\022?\n\024mutual_fund_snapshot\030\003 \001(\013" +
-      "2\037.proto.MutualFundSnapshot_ProtoH\000B\020\n\016a" +
-      "sset_snapshot\"\215\002\n\023StockSnapshot_Proto\022 \n" +
-      "\030StockSnapshot_asset_name\030\001 \001(\t\022!\n\031Stock" +
-      "Snapshot_asset_value\030\002 \001(\002\022\034\n\024StockSnaps" +
-      "hot_ticker\030\003 \001(\t\022\036\n\026StockSnapshot_quanti" +
-      "ty\030\004 \001(\002\022\033\n\023StockSnapshot_yield\030\005 \001(\002\022\'\n" +
-      "\037StockSnapshot_intermediary_name\030\006 \001(\t\022-" +
-      "\n%StockSnapshot_intermediary_commission\030" +
-      "\007 \001(\002\"\373\001\n\022BondSnapshot_Proto\022\037\n\027BondSnap" +
-      "shot_asset_name\030\001 \001(\t\022 \n\030BondSnapshot_as" +
-      "set_value\030\002 \001(\002\022\"\n\032BondSnapshot_interest" +
-      "_rate\030\003 \001(\002\022%\n\035BondSnapshot_days_to_matu" +
-      "rity\030\004 \001(\005\022&\n\036BondSnapshot_intermediary_" +
-      "name\030\005 \001(\t\022/\n\'BondSnapshot_intermediary_" +
-      "interest_rate\030\006 \001(\002\"\262\002\n\030MutualFundSnapsh" +
-      "ot_Proto\022%\n\035MutualFundSnapshot_asset_nam" +
-      "e\030\001 \001(\t\022&\n\036MutualFundSnapshot_asset_valu" +
-      "e\030\002 \001(\002\022(\n MutualFundSnapshot_expense_ra" +
-      "tio\030\003 \001(\002\022,\n$MutualFundSnapshot_intermed" +
-      "iary_name\030\004 \001(\t\0227\n/MutualFundSnapshot_in" +
-      "termediary_employee_number\030\005 \001(\t\0226\n.Mutu" +
-      "alFundSnapshot_intermediary_management_f" +
-      "ee\030\006 \001(\002B\033\n\016oopresit.protoB\tTestProtob\006p" +
-      "roto3"
+      "estamp.proto\"I\n\024Intermediaries_Proto\0221\n\016" +
+      "intermediaries\030\001 \003(\0132\031.proto.Intermediar" +
+      "y_Proto\"\315\001\n\022Intermediary_Proto\022\031\n\021interm" +
+      "ediary_name\030\001 \001(\t\022%\n\006broker\030\002 \001(\0132\023.prot" +
+      "o.Broker_ProtoH\000\022!\n\004bank\030\003 \001(\0132\021.proto.B" +
+      "ank_ProtoH\000\022=\n\023mutual_fund_manager\030\004 \001(\013" +
+      "2\036.proto.MutualFundManager_ProtoH\000B\023\n\021in" +
+      "termediary_type\")\n\014Broker_Proto\022\031\n\021broke" +
+      "r_commission\030\001 \001(\002\"\'\n\nBank_Proto\022\031\n\021bank" +
+      "_interestRate\030\001 \001(\002\"m\n\027MutualFundManager" +
+      "_Proto\022(\n mutualfundmanager_employeenumb" +
+      "er\030\001 \001(\t\022(\n mututalfundmanager_managemen" +
+      "tfee\030\002 \001(\002\"2\n\014Assets_Proto\022\"\n\006assets\030\001 \003" +
+      "(\0132\022.proto.Asset_Proto\"\355\001\n\013Asset_Proto\022\022" +
+      "\n\nasset_name\030\001 \001(\t\022\023\n\013asset_value\030\002 \001(\002\022" +
+      "/\n\014intermediary\030\003 \001(\0132\031.proto.Intermedia" +
+      "ry_Proto\022#\n\005stock\030\004 \001(\0132\022.proto.Stock_Pr" +
+      "otoH\000\022!\n\004bond\030\005 \001(\0132\021.proto.Bond_ProtoH\000" +
+      "\022.\n\013mutual_fund\030\006 \001(\0132\027.proto.MutualFund" +
+      "_ProtoH\000B\014\n\nasset_type\"P\n\013Stock_Proto\022\024\n" +
+      "\014stock_ticker\030\001 \001(\t\022\026\n\016stock_quantity\030\002 " +
+      "\001(\002\022\023\n\013stock_yield\030\003 \001(\002\"D\n\nBond_Proto\022\031" +
+      "\n\021bond_interestrate\030\001 \001(\002\022\033\n\023bond_daysto" +
+      "maturity\030\002 \001(\005\"3\n\020MutualFund_Proto\022\037\n\027mu" +
+      "tualfund_expenseratio\030\001 \001(\002\"Z\n\031Historica" +
+      "lSnapshots_Proto\022=\n\024historical_snapshots" +
+      "\030\001 \003(\0132\037.proto.HistoricalSnapshot_Proto\"" +
+      "y\n\030HistoricalSnapshot_Proto\022(\n\004date\030\001 \001(" +
+      "\0132\032.google.protobuf.Timestamp\0223\n\017asset_s" +
+      "napshots\030\002 \003(\0132\032.proto.AssetSnapshot_Pro" +
+      "to\"\322\001\n\023AssetSnapshot_Proto\0224\n\016stock_snap" +
+      "shot\030\001 \001(\0132\032.proto.StockSnapshot_ProtoH\000" +
+      "\0222\n\rbond_snapshot\030\002 \001(\0132\031.proto.BondSnap" +
+      "shot_ProtoH\000\022?\n\024mutual_fund_snapshot\030\003 \001" +
+      "(\0132\037.proto.MutualFundSnapshot_ProtoH\000B\020\n" +
+      "\016asset_snapshot\"\215\002\n\023StockSnapshot_Proto\022" +
+      " \n\030StockSnapshot_asset_name\030\001 \001(\t\022!\n\031Sto" +
+      "ckSnapshot_asset_value\030\002 \001(\002\022\034\n\024StockSna" +
+      "pshot_ticker\030\003 \001(\t\022\036\n\026StockSnapshot_quan" +
+      "tity\030\004 \001(\002\022\033\n\023StockSnapshot_yield\030\005 \001(\002\022" +
+      "\'\n\037StockSnapshot_intermediary_name\030\006 \001(\t" +
+      "\022-\n%StockSnapshot_intermediary_commissio" +
+      "n\030\007 \001(\002\"\373\001\n\022BondSnapshot_Proto\022\037\n\027BondSn" +
+      "apshot_asset_name\030\001 \001(\t\022 \n\030BondSnapshot_" +
+      "asset_value\030\002 \001(\002\022\"\n\032BondSnapshot_intere" +
+      "st_rate\030\003 \001(\002\022%\n\035BondSnapshot_days_to_ma" +
+      "turity\030\004 \001(\005\022&\n\036BondSnapshot_intermediar" +
+      "y_name\030\005 \001(\t\022/\n\'BondSnapshot_intermediar" +
+      "y_interest_rate\030\006 \001(\002\"\262\002\n\030MutualFundSnap" +
+      "shot_Proto\022%\n\035MutualFundSnapshot_asset_n" +
+      "ame\030\001 \001(\t\022&\n\036MutualFundSnapshot_asset_va" +
+      "lue\030\002 \001(\002\022(\n MutualFundSnapshot_expense_" +
+      "ratio\030\003 \001(\002\022,\n$MutualFundSnapshot_interm" +
+      "ediary_name\030\004 \001(\t\0227\n/MutualFundSnapshot_" +
+      "intermediary_employee_number\030\005 \001(\t\0226\n.Mu" +
+      "tualFundSnapshot_intermediary_management" +
+      "_fee\030\006 \001(\002B\033\n\016oopresit.protoB\tTestProtob" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_proto_SearchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_proto_SearchRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_proto_SearchRequest_descriptor,
-        new java.lang.String[] { "Query", "PageNumber", "ResultPerPage", });
     internal_static_proto_Intermediaries_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_proto_Intermediaries_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Intermediaries_Proto_descriptor,
         new java.lang.String[] { "Intermediaries", });
     internal_static_proto_Intermediary_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_proto_Intermediary_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Intermediary_Proto_descriptor,
         new java.lang.String[] { "IntermediaryName", "Broker", "Bank", "MutualFundManager", "IntermediaryType", });
     internal_static_proto_Broker_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_proto_Broker_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Broker_Proto_descriptor,
         new java.lang.String[] { "BrokerCommission", });
     internal_static_proto_Bank_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_proto_Bank_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Bank_Proto_descriptor,
         new java.lang.String[] { "BankInterestRate", });
     internal_static_proto_MutualFundManager_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_proto_MutualFundManager_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_MutualFundManager_Proto_descriptor,
         new java.lang.String[] { "MutualfundmanagerEmployeenumber", "MututalfundmanagerManagementfee", });
     internal_static_proto_Assets_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_proto_Assets_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Assets_Proto_descriptor,
         new java.lang.String[] { "Assets", });
     internal_static_proto_Asset_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_proto_Asset_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Asset_Proto_descriptor,
         new java.lang.String[] { "AssetName", "AssetValue", "Intermediary", "Stock", "Bond", "MutualFund", "AssetType", });
     internal_static_proto_Stock_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_proto_Stock_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Stock_Proto_descriptor,
         new java.lang.String[] { "StockTicker", "StockQuantity", "StockYield", });
     internal_static_proto_Bond_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_proto_Bond_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_Bond_Proto_descriptor,
         new java.lang.String[] { "BondInterestrate", "BondDaystomaturity", });
     internal_static_proto_MutualFund_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_proto_MutualFund_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_MutualFund_Proto_descriptor,
         new java.lang.String[] { "MutualfundExpenseratio", });
     internal_static_proto_HistoricalSnapshots_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_proto_HistoricalSnapshots_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_HistoricalSnapshots_Proto_descriptor,
         new java.lang.String[] { "HistoricalSnapshots", });
     internal_static_proto_HistoricalSnapshot_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_proto_HistoricalSnapshot_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_HistoricalSnapshot_Proto_descriptor,
         new java.lang.String[] { "Date", "AssetSnapshots", });
     internal_static_proto_AssetSnapshot_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_proto_AssetSnapshot_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_AssetSnapshot_Proto_descriptor,
         new java.lang.String[] { "StockSnapshot", "BondSnapshot", "MutualFundSnapshot", "AssetSnapshot", });
     internal_static_proto_StockSnapshot_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_proto_StockSnapshot_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_StockSnapshot_Proto_descriptor,
         new java.lang.String[] { "StockSnapshotAssetName", "StockSnapshotAssetValue", "StockSnapshotTicker", "StockSnapshotQuantity", "StockSnapshotYield", "StockSnapshotIntermediaryName", "StockSnapshotIntermediaryCommission", });
     internal_static_proto_BondSnapshot_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_proto_BondSnapshot_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_BondSnapshot_Proto_descriptor,
         new java.lang.String[] { "BondSnapshotAssetName", "BondSnapshotAssetValue", "BondSnapshotInterestRate", "BondSnapshotDaysToMaturity", "BondSnapshotIntermediaryName", "BondSnapshotIntermediaryInterestRate", });
     internal_static_proto_MutualFundSnapshot_Proto_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_proto_MutualFundSnapshot_Proto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_proto_MutualFundSnapshot_Proto_descriptor,
