@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stockservice;
+option java_package = "oopresit.stockservice";
+option java_multiple_files = true;
+
+message StockService_Proto {
+    string stockservice_name = 1;
+    float stockserice_value = 2;
+    float stockservice_quantity = 3;
+    float stockservice_yield = 4;
+    float stockservice_intermediary_commission = 5;
+}
+
+message StockService_Return_Proto {
+    double stockservice_return = 1;
+}
+
+service StockService {
+    rpc CalculateStockReturn(StockService_Proto) returns (StockService_Return_Proto);
+}
