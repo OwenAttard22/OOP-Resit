@@ -1,3 +1,0 @@
-C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Test3/build/CMakeFiles/MyProtobufProject.dir
-C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Test3/build/CMakeFiles/edit_cache.dir
-C:/Users/owena/OneDrive/Desktop/OOP-Resit/OOP-Resit/Test3/build/CMakeFiles/rebuild_cache.dir
