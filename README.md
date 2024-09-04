@@ -15,7 +15,14 @@ Task 1 is split into 3 parts:
 
 ### Java Implementation
 
-The Java implementation of task 1 is found in Java/oopresit/task1/
+The Java implementation of task 1 is found in Java/oopresit/task1/  
+This directory of the task has a folder called Saves which stored all preivously saved applications state to be potentionally loaded by the system.  
+The task 1 implemtation consists of 5 java files:  
+1. Assets.java: Assets class hierarchy
+2. Intermediaries.java: Intermediaries class hierarchy
+3. Portfolio.java: Snapshot recording and listing
+4. CLI.java: User Interface + Program Helper Functions
+5. Main.java: Main method
 
 ### C++ Implementation
 
@@ -48,10 +55,8 @@ Once you are in the correct directory, learn how to compile and run the [Java Pr
 
 ### Maven
 
-To run any of the desired Java projects you can run the following command in the correct path of the project: 
-**mvn exec:java**
+To run any of the desired Java projects you can run the following command in the correct path of the project: <br>**mvn exec:java**
 
-To clean and compile a Java project, once in the correct path you can run the following command:
- **mvn clean compile** 
+To clean and compile a Java project, once in the correct path you can run the following command: <br>**mvn clean compile** 
 
 ### Cmake
