@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package proto;
+option java_package="oopresit.proto";
+option java_outer_classname="TestProto";
+
+import "google/protobuf/timestamp.proto";
+
+
+/* Just a test example
+message SearchRequest {
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+}
+*/
+
+message Intermediaries_Proto {
+    repeated Intermediary_Proto intermediaries = 1;
+}
+
+message Intermediary_Proto {
+    string intermediary_name = 1;
+    oneof intermediary_type {
+        Broker_Proto broker = 2;
+        Bank_Proto bank = 3;
+        MutualFundManager_Proto mutual_fund_manager = 4;
+    }
+}
+
+message Broker_Proto {
+    float broker_commission = 1;
+}
+
+message Bank_Proto {
+    float bank_interestRate = 1;
+}
+
+message MutualFundManager_Proto {
+    string mutualfundmanager_employeenumber = 1;
+    float mututalfundmanager_managementfee = 2;
+}
+
+/* Assets */
+
+message Assets_Proto {
+    repeated Asset_Proto assets = 1;
+}
+
+message Asset_Proto {
+    string asset_name = 1;
+    float asset_value = 2;
+    Intermediary_Proto intermediary = 3;
+
+    oneof asset_type {
+        Stock_Proto stock = 4;
+        Bond_Proto bond = 5;
+        MutualFund_Proto mutual_fund = 6;
+    }
+}
+
+message Stock_Proto {
+    string stock_ticker = 1;
+    float stock_quantity = 2;
+    float stock_yield = 3;
+}
+
+message Bond_Proto {
+    float bond_interestrate = 1;
+    int32 bond_daystomaturity = 2;
+}
+
+message MutualFund_Proto {
+    float mutualfund_expenseratio = 1;
+}
+
+/* Historical Snapshots */
+
+message HistoricalSnapshots_Proto {
+    repeated HistoricalSnapshot_Proto historical_snapshots = 1;
+}
+
+message HistoricalSnapshot_Proto {
+    google.protobuf.Timestamp date = 1;
+    repeated AssetSnapshot_Proto asset_snapshots = 2;
+}
+
+message AssetSnapshot_Proto {
+    oneof asset_snapshot {
+        StockSnapshot_Proto stock_snapshot = 1;
+        BondSnapshot_Proto bond_snapshot = 2;
+        MutualFundSnapshot_Proto mutual_fund_snapshot = 3;
+    }
+}
+
+message StockSnapshot_Proto {
+    string StockSnapshot_asset_name = 1;
+    float StockSnapshot_asset_value = 2;
+    string StockSnapshot_ticker = 3;
+    float StockSnapshot_quantity = 4;
+    float StockSnapshot_yield = 5;
+    string StockSnapshot_intermediary_name = 6;
+    float StockSnapshot_intermediary_commission = 7;
+}
+
+message BondSnapshot_Proto {
+    string BondSnapshot_asset_name = 1;
+    float BondSnapshot_asset_value = 2;
+    float BondSnapshot_interest_rate = 3;
+    int32 BondSnapshot_days_to_maturity = 4;
+    string BondSnapshot_intermediary_name = 5;
+    float BondSnapshot_intermediary_interest_rate = 6;
+}
+
+message MutualFundSnapshot_Proto {
+    string MutualFundSnapshot_asset_name = 1;
+    float MutualFundSnapshot_asset_value = 2;
+    float MutualFundSnapshot_expense_ratio = 3;
+    string MutualFundSnapshot_intermediary_name = 4;
+    string MutualFundSnapshot_intermediary_employee_number = 5;
+    float MutualFundSnapshot_intermediary_management_fee = 6;
+}
+
+
+
+
+
+
+

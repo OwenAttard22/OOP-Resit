@@ -878,7 +878,6 @@ public static void createMutualFund() {
     
     private static void startServer() {
         try {
-            stockServer = new StockServer();
             stockServer.start();
             System.out.println("gRPC Server started...");
         } catch (Exception e) {
