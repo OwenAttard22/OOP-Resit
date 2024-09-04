@@ -35,6 +35,7 @@ The Java implementation of task 4 is found in Java/oopresit/task4/, this implemt
 ## How To Run Tasks
 
 Start by navigating to the desired project's path as shown [here](#navigate-paths-accordingly).
+
 Once you are in the correct directory, learn how to compile and run the [Java Projects using Maven](#maven) or the [C++ Projects using Cmake](#cmake).
 
 ### Navigate paths accordingly
@@ -47,7 +48,10 @@ Once you are in the correct directory, learn how to compile and run the [Java Pr
 
 ### Maven
 
-To run any of the desired Java projects you can run the following command in the correct path of the project: **mvn exec:java**
-To clean and compile a Java project, once in the correct path you can run the following command: **mvn clean compile** 
+To run any of the desired Java projects you can run the following command in the correct path of the project: 
+**mvn exec:java**
+
+To clean and compile a Java project, once in the correct path you can run the following command:
+ **mvn clean compile** 
 
 ### Cmake
