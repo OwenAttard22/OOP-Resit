@@ -41,4 +41,5 @@ Iterate over Asset in Assets_Proto, for each Asset:
         append MutualFund to global ArrayList
 
 
-return ArrayList
+iterate over Asset in global ArrayList, for each Asset:
+    print Asset
