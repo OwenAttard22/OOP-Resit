@@ -17,7 +17,7 @@ public class CLI4 {
     private static ArrayList<HistoricalSnapshots2> portfolioList = new ArrayList<>();
     private static Date _date;
     private static Facade facade = new Facade();
-    private static StockServer stockServer;
+    private static StockServer stockServer = new StockServer();
 
     static Date get_date(){
         return _date;
