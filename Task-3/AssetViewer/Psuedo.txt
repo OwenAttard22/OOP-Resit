@@ -1,0 +1,44 @@
+Pseudo Code for what AssetViewer could've been:
+Assumption: We are re-using the Test.proto used for Task3a and Task3b found in Java/oopresit/task3/src/main/proto
+
+Initialise empty ArrayList of type Assets
+
+Get All list of saved assets.bin files in Java/oopresit/task3
+If list is empty: 
+    print empty message
+Otherwise: 
+    continue
+
+Iterate over length of saved files
+    Print loop counter alongside filename for CLI Menu
+Take user input for file selection
+
+Read Assets_Proto from file
+Iterate over Asset in Assets_Proto, for each Asset:
+    if Asset type is Stock_Proto:
+        use Assets.get_intermediary() to get intermediary
+        use getters to retrieve intermediary Name and Commission
+        construct Broker
+        use Asset getters to retrieve Name, Value, Yield, Quantity, Ticker
+        construct Stock
+        append Stock to the global ArrayList
+
+    if Asset type is Bond_Proto:
+        use Assets.get_intermediary() to get intermediary
+        use getters to retrieve intermediary Name and interestRate
+        construct Bank
+        use Asset getters to retrieve Name, Value, InterestRate, DaysToMaturity
+        construct Bond
+        append Bond to global ArrayList
+        
+
+    if Asset type is MutualFund_Proto:
+        use Assets.get_intermediary() to get intermediary
+        use getters to retrieve intermediary Name, EmployeeNumber and ManagementFee
+        construct MutualFundManager
+        use Asset getters to retrieve Name, Value and ExpenseRatio
+        construct MutualFund
+        append MutualFund to global ArrayList
+
+
+return ArrayList
